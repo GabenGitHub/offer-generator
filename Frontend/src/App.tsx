@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { useEffect, useState } from "react";
+import { MapContainer, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet';
 import { LatLngExpression } from "leaflet";
 
 import hungary from "./data/counties.json"
@@ -9,9 +9,12 @@ import "./App.css";
 import "leaflet/dist/leaflet.css";
 
 const App: React.FC = () => {
+    const [counties, setCounties]: any = useState();
     useEffect(() => {
-        console.log(hungary);
+        setCounties(hungary);
+        console.log(hungary.features)
     }, [])
+
 
     const position: LatLngExpression = [47.481, 18.990]
 
@@ -22,16 +25,19 @@ const App: React.FC = () => {
             </header>
             <div className="App">
                 <h1>Árajánlat</h1>
-                <MapContainer  className="map-container" center={position} zoom={7} scrollWheelZoom={true}>
+                <MapContainer  className="map-container" center={position} zoom={8} scrollWheelZoom={true}>
                     <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                     />
-                    <Marker position={position}>
+                    {/* { type: string; geometry: { type: string; coordinates: number[][][]; }; properties: { megye: string; }; }[] */}
+                    <GeoJSON key='my-geojson' data={counties} />
+
+                    {/* <Marker position={position}>
                         <Popup>
                             A pretty CSS3 popup. <br /> Easily customizable.
                         </Popup>
-                    </Marker>
+                    </Marker> */}
                 </MapContainer>
             </div>
         </>
