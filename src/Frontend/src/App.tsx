@@ -12,7 +12,6 @@ const App: React.FC = () => {
     const [counties, setCounties]: any = useState();
     useEffect(() => {
         setCounties(hungary);
-        console.log(hungary.features)
     }, [])
 
 
@@ -30,14 +29,13 @@ const App: React.FC = () => {
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                     />
-                    {/* { type: string; geometry: { type: string; coordinates: number[][][]; }; properties: { megye: string; }; }[] */}
                     <GeoJSON key='my-geojson' data={counties} />
 
-                    {/* <Marker position={position}>
+                    <Marker position={position}>
                         <Popup>
                             A pretty CSS3 popup. <br /> Easily customizable.
                         </Popup>
-                    </Marker> */}
+                    </Marker>
                 </MapContainer>
             </div>
         </>
