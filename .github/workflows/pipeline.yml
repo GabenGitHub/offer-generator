@@ -52,7 +52,8 @@ jobs:
         id: docker_build_frontend
         uses: docker/build-push-action@v2
         with:
-          file: src/Frontend/Dockerfile
+          context: src/Frontend/
+          file: Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: gabendocker/offer-frontend:latest
@@ -63,7 +64,8 @@ jobs:
         id: docker_build_backend
         uses: docker/build-push-action@v2
         with:
-          file: src/Backend/Dockerfile
+          context: src/Backend/
+          file: Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: gabendocker/offer-backend:latest
