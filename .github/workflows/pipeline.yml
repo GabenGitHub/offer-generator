@@ -48,25 +48,27 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       
-      - name: Build and push backend
-        id: docker_build_backend
-        uses: docker/build-push-action@v2
-        with:
-          file: ./src/Backend/Dockerfile
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: gabendocker/offer-backend:latest
-      - name: Image digest
-        run: echo ${{ steps.docker_build.outputs.digest }}
-
       - name: Build and push frontend
         id: docker_build_frontend
         uses: docker/build-push-action@v2
         with:
-          file: ./src/Frontend/Dockerfile
+          context: src/Frontend/
+          file: src/Frontend/Dockerfile
           platforms: linux/amd64,linux/arm64
           push: true
           tags: gabendocker/offer-frontend:latest
+      - name: Image digest
+        run: echo ${{ steps.docker_build.outputs.digest }}
+
+      - name: Build and push backend
+        id: docker_build_backend
+        uses: docker/build-push-action@v2
+        with:
+          context: src/Backend/
+          file: src/Backend/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: gabendocker/offer-backend:latest
       - name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
 
