@@ -3,6 +3,9 @@ import { Feature, Geometry } from "geojson";
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import { LatLngExpression, Layer, LeafletMouseEvent } from "leaflet";
 
+import { AreaProperties } from "./models/area-properties";
+import { version } from '../package.json';
+
 import hungary from "./data/counties.json"
 
 import logo from "./assets/images/logo-b.png";
@@ -11,38 +14,35 @@ import "leaflet/dist/leaflet.css";
 
 const App: React.FC = () => {
     const [counties, setCounties]: any = useState<GeoJSON.FeatureCollection<any>>();
-    const [select, setSelect]: [string[], Dispatch<SetStateAction<string[]>>] = useState<string[]>(["test"]);
+    const [selectedAreas, setselectedAreas]: [AreaProperties[], Dispatch<SetStateAction<AreaProperties[]>>] = useState<AreaProperties[]>([]);
 
     useEffect(() => {
         setCounties(hungary);
     }, []);
 
-    const onAreaClick = (event: LeafletMouseEvent) => {
+    const onClickArea = (event: LeafletMouseEvent) => {
         event.target.setStyle({
             color: "red",
             fillColor: "red"
         });
-
-        const area = event.target.feature.properties.megye;
-        console.log(event.target.feature.properties.megye)
-        // TODO: not saving into the state
-        setSelect(select => [...select, area]);
-        console.log(select)
+        
+        const area: AreaProperties = event.target.feature.properties;
+        setselectedAreas(select => [...select, area]);
     };
-    
+
+    const onMouseOverArea = (event: LeafletMouseEvent) => {
+        const areaName: string = event.target.feature.properties.megye;
+        event.target.bindPopup(`${areaName}`).openPopup()
+    };
 
     const onEachArea = (area: Feature<Geometry, any>, layer: Layer) => {
         layer.on({
-            click: onAreaClick,
-            mouseover: (event: LeafletMouseEvent) => {
-                const areaName: string = event.target.feature.properties.megye;
-                const population: number = event.target.feature.properties.population;
-                layer.bindPopup(`${areaName}: ${population} fő`).openPopup();
-            },
+            click: onClickArea,
+            mouseover: onMouseOverArea,
         });
     };
 
-    const position: LatLngExpression = [47.181, 18.990];
+    const position: LatLngExpression = [47.170, 18.990];
 
     return (
         <>
@@ -62,7 +62,34 @@ const App: React.FC = () => {
                         onEachFeature={onEachArea}
                     />
                 </MapContainer>
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Terület</th>
+                                <th>Népesség</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                            selectedAreas.map((area: AreaProperties, i) => {
+                                return (
+                                    <tr key={i}>
+                                        <td>{area.megye}</td>
+                                        <td>{area.population}</td>
+                                    </tr>
+                                )
+                            })
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <ul>
+                    </ul>
+                </div>
             </div>
+            <div>v{version}</div>
         </>
     );
 };
