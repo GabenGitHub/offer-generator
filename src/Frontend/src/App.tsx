@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet';
-import { LatLngExpression } from "leaflet";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Feature, Geometry } from "geojson";
+import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
+import { LatLngExpression, Layer, LeafletMouseEvent } from "leaflet";
 
 import hungary from "./data/counties.json"
 
@@ -9,13 +10,39 @@ import "./App.css";
 import "leaflet/dist/leaflet.css";
 
 const App: React.FC = () => {
-    const [counties, setCounties]: any = useState();
+    const [counties, setCounties]: any = useState<GeoJSON.FeatureCollection<any>>();
+    const [select, setSelect]: [string[], Dispatch<SetStateAction<string[]>>] = useState<string[]>(["test"]);
+
     useEffect(() => {
         setCounties(hungary);
-    }, [])
+    }, []);
 
+    const onAreaClick = (event: LeafletMouseEvent) => {
+        event.target.setStyle({
+            color: "red",
+            fillColor: "red"
+        });
 
-    const position: LatLngExpression = [47.481, 18.990]
+        const area = event.target.feature.properties.megye;
+        console.log(event.target.feature.properties.megye)
+        // TODO: not saving into the state
+        setSelect(select => [...select, area]);
+        console.log(select)
+    };
+    
+
+    const onEachArea = (area: Feature<Geometry, any>, layer: Layer) => {
+        layer.on({
+            click: onAreaClick,
+            mouseover: (event: LeafletMouseEvent) => {
+                const areaName: string = event.target.feature.properties.megye;
+                const population: number = event.target.feature.properties.population;
+                layer.bindPopup(`${areaName}: ${population} fő`).openPopup();
+            },
+        });
+    };
+
+    const position: LatLngExpression = [47.181, 18.990];
 
     return (
         <>
@@ -29,17 +56,15 @@ const App: React.FC = () => {
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                     />
-                    <GeoJSON key='my-geojson' data={counties} />
-
-                    <Marker position={position}>
-                        <Popup>
-                            A pretty CSS3 popup. <br /> Easily customizable.
-                        </Popup>
-                    </Marker>
+                    <GeoJSON 
+                        key='my-geojson'
+                        data={counties} 
+                        onEachFeature={onEachArea}
+                    />
                 </MapContainer>
             </div>
         </>
     );
-}
+};
 
 export default App;
