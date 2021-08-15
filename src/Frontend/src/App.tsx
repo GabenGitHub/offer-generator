@@ -11,6 +11,7 @@ import hungary from "./data/counties.json"
 import logo from "./assets/images/logo-b.png";
 import "./App.css";
 import "leaflet/dist/leaflet.css";
+import axios from "axios";
 
 const App: React.FC = () => {
     const [counties, setCounties]: any = useState<GeoJSON.FeatureCollection<any>>();
@@ -18,7 +19,7 @@ const App: React.FC = () => {
 
     useEffect(() => {
         setCounties(hungary);
-    }, []);
+    }, [selectedAreas]);
 
     const onClickArea = (event: LeafletMouseEvent): void => {
         event.target.setStyle({
@@ -56,6 +57,19 @@ const App: React.FC = () => {
         return number?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     };
 
+    const onSubmit = async () => {
+        const response = await axios({
+            method: "POST",
+            data: {
+              areas: selectedAreas,
+            },
+            // withCredentials: true,
+            url: "/api/offer",
+        });
+        const data = await response.data;
+        console.log(data);
+    }
+
     return (
         <>
             <header className="App-header">
@@ -74,33 +88,29 @@ const App: React.FC = () => {
                         onEachFeature={onEachArea}
                     />
                 </MapContainer>
-                <div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Terület</th>
-                                <th>Népesség</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                            selectedAreas.map((area: AreaProperties, i) => 
-                                (
-                                    <tr key={i}>
-                                        <td>{area.megye}</td>
-                                        <td>{formatNumberWithCommas(area.population)} fő</td>
-                                        <td><button onClick={() => removeArea(area)}>Törlés</button></td>
-                                    </tr>
-                                )
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Terület</th>
+                            <th>Népesség</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                        selectedAreas.map((area: AreaProperties, i) => 
+                            (
+                                <tr key={i}>
+                                    <td>{area.megye}</td>
+                                    <td>{formatNumberWithCommas(area.population)} fő</td>
+                                    <td><button onClick={() => removeArea(area)}>Törlés</button></td>
+                                </tr>
                             )
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <div>
-                    <ul>
-                    </ul>
-                </div>
+                        )
+                        }
+                    </tbody>
+                </table>
+                {/* TODO: name, email address, free text */}
+                <button onClick={onSubmit} type="submit">Ajánlat kérése</button>
             </div>
             <div>v{version}</div>
         </>
