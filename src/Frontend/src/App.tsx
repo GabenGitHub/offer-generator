@@ -20,11 +20,13 @@ const App: React.FC = () => {
         setCounties(hungary);
     }, []);
 
-    const onClickArea = (event: LeafletMouseEvent) => {
+    const onClickArea = (event: LeafletMouseEvent): void => {
         event.target.setStyle({
             color: "red",
             fillColor: "red"
         });
+
+        event.target.feature.properties.selected = true;
         
         const area: AreaProperties = event.target.feature.properties;
         setselectedAreas(select => [...select, area]);
@@ -32,17 +34,27 @@ const App: React.FC = () => {
 
     const onMouseOverArea = (event: LeafletMouseEvent) => {
         const areaName: string = event.target.feature.properties.megye;
-        event.target.bindPopup(`${areaName}`).openPopup()
+        event.target.bindPopup(`${areaName}`).openPopup();
+
     };
 
-    const onEachArea = (area: Feature<Geometry, any>, layer: Layer) => {
+    const onEachArea = (area: Feature<Geometry, AreaProperties>, layer: Layer): void => {
         layer.on({
             click: onClickArea,
             mouseover: onMouseOverArea,
         });
     };
 
+    const removeArea = (area: AreaProperties): any => {
+        const newArr = selectedAreas.filter(a => a.megye !== area.megye);
+        setselectedAreas(newArr);
+    };
+
     const position: LatLngExpression = [47.170, 18.990];
+
+    const formatNumberWithCommas = (number: number) => {
+        return number?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    };
 
     return (
         <>
@@ -72,14 +84,15 @@ const App: React.FC = () => {
                         </thead>
                         <tbody>
                             {
-                            selectedAreas.map((area: AreaProperties, i) => {
-                                return (
+                            selectedAreas.map((area: AreaProperties, i) => 
+                                (
                                     <tr key={i}>
                                         <td>{area.megye}</td>
-                                        <td>{area.population}</td>
+                                        <td>{formatNumberWithCommas(area.population)} fő</td>
+                                        <td><button onClick={() => removeArea(area)}>Törlés</button></td>
                                     </tr>
                                 )
-                            })
+                            )
                             }
                         </tbody>
                     </table>
