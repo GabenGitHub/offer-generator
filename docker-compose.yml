@@ -12,7 +12,7 @@ services:
     depends_on:
       - mongodb
     environment:
-      - DB_CONNECTION=mongodb://mongodb:27017/test
+      - DB_CONNECTION=mongodb://mongodb:27017/offer
     ports:
       - 4000:4000
     networks:
