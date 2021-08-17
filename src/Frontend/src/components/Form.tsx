@@ -51,7 +51,7 @@ const Form: React.FC<any> = ({selectedAreas}) => {
             </>
         )
     }
-    return <></>
+    return <><h2>Válasszon területet</h2></>
 }
 
 export default Form;

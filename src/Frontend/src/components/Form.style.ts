@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const StyledForm = styled.form`
     display: flex;
     flex-direction: column;
-    width: 50vw;
-    padding: 1rem;
+    width: 500px;
+    padding: 0.5rem;
 `
 
 export const FromContainer = styled.div`
