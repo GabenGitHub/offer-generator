@@ -1,8 +1,13 @@
-import { StyledButton } from "./Button.style"
-
 const Button = ({value}: any) => {
     return (
-        <StyledButton type="submit" value={value} />
+        <div className="button-container">
+            <button className="request-offer">
+                <span className="circle" aria-hidden="true">
+                <span className="icon arrow"></span>
+                </span>
+                <span className="button-text">{value}</span>
+            </button>
+        </div>
     )
 }
 
