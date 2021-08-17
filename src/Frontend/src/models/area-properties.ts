@@ -1,5 +1,5 @@
 export interface AreaProperties {
-    megye: string,
+    name: string,
     population: number,
     selected: boolean,
 }

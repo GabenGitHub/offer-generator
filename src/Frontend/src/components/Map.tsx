@@ -23,7 +23,7 @@ const Map: React.FC<any> = ({updateState}) => {
     };
 
     const onMouseOverArea = (event: LeafletMouseEvent) => {
-        const areaName: string = event.target.feature.properties.megye;
+        const areaName: string = event.target.feature.properties.name;
         event.target.bindPopup(`${areaName}`).openPopup();
     };
 

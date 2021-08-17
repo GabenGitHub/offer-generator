@@ -5,5 +5,6 @@ import offerController from "../controllers/offerController";
 
 
 router.post("/", offerController);
+router.get("/", offerController);
 
 export = router;
