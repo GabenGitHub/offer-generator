@@ -12,3 +12,24 @@ export const FromContainer = styled.div`
     display: flex;
     justify-content: center;
 `
+
+export const FormAction = styled.div`
+    text-align: center;
+    margin: 2rem;
+`
+export const Icon = styled.img`
+    height: 40px;
+    margin-bottom: 10px;
+    animation: slide 1s ease-in-out infinite;
+
+    @keyframes slide {
+        0%,
+        100% {
+            transform: translate(0, 10px);
+        }
+        
+        50% {
+            transform: translate(0, 0);
+        }
+    }
+`

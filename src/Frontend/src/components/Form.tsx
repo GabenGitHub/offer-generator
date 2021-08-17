@@ -3,7 +3,8 @@ import axios from "axios";
 import Input from "./Input";
 import Button from "./Button";
 import TextArea from "./TextArea";
-import { FromContainer, StyledForm } from "./Form.style";
+import { FormAction, FromContainer, Icon, StyledForm } from "./Form.style";
+import arrow from "../assets/images/up-arrow.svg";
 
 const Form: React.FC<any> = ({selectedAreas}) => {
     const [name, setName] = useState<string>("");
@@ -51,7 +52,12 @@ const Form: React.FC<any> = ({selectedAreas}) => {
             </>
         )
     }
-    return <><h2>Válasszon területet</h2></>
+    return (
+        <FormAction>
+            <Icon src={arrow} alt="up arrow" />
+            <h2>Válasszon területet</h2>
+        </FormAction>
+    )
 }
 
 export default Form;
