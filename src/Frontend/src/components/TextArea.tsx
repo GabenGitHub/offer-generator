@@ -1,9 +1,9 @@
-import { StyledTextArea } from "./Input.style"
+import { StyledLabel, StyledTextArea } from "./Input.style"
 
 const TextArea = ({ label, value, handleChange, type="text", rows=10, cols=30, ...rest }: any) => {
     return (
         <>
-            <label>{label}</label>
+            <StyledLabel>{label}</StyledLabel>
             <StyledTextArea rows={rows} cols={cols} onChange={handleChange} placeholder={label}/>
         </>
     )

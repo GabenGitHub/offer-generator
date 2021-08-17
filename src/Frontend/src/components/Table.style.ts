@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
 export const StyledTable = styled.table`
-    width: 100%;
+    max-width: 100vw;
+    width: 500px;
     text-align: left;
+    margin: 2rem auto;
 
     & thead {
         background-color: #ddd;
