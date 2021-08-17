@@ -23,7 +23,7 @@ const Table: React.FC<any> = ({selectedAreas, removeArea}) => {
                     selectedAreas.map((area: AreaProperties, i: number) => 
                         (
                             <tr key={i}>
-                                <td>{area.megye}</td>
+                                <td>{area.name}</td>
                                 <td>{formatNumberWithCommas(area.population)} fő</td>
                                 <td><button onClick={() => removeArea(area)}>Törlés</button></td>
                             </tr>

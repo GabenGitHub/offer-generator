@@ -1,11 +1,19 @@
 import { Request, Response } from "express";
+import Offer from "../models/offer";
 
-const offer = (req: Request, res: Response) => {
-    console.log(req.body);
-    // const { areas } = req.body;
+const offer = async (req: Request, res: Response) => {
+    const { areas, name, company, email, message } = req.body;
 
-    // TODO: save to DB
-    res.send(req.body)
+    const newOffer = new Offer({
+        areas,
+        name,
+        company,
+        email,
+        message
+    });
+
+    await newOffer.save();
+    res.status(201).send();
 }
 
 export = offer;

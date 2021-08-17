@@ -18,9 +18,6 @@ app.use(express.json());
 
 // Routes
 app.use("/api/offer", offerRoutes);
-app.get('/', (req: Request, res: Response) => {
-    res.send('hello world');
-});
 
 // Middleware
 app.use(errorHandler);

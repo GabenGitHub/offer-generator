@@ -18,7 +18,7 @@ const App: React.FC = () => {
     };
 
     const removeArea = (area: AreaProperties): any => {
-        const newArr = selectedAreas.filter(a => a.megye !== area.megye);
+        const newArr = selectedAreas.filter(a => a.name !== area.name);
         setSelectedAreas(newArr);
     };
 
