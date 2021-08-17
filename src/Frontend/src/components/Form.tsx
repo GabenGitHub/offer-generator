@@ -41,9 +41,9 @@ const Form: React.FC<any> = ({selectedAreas}) => {
             <>
                 <FromContainer>
                     <StyledForm onSubmit={handleSubmit}>
-                        <Input label="Név" handleChange={({ target: { value }}: any) => setName(value)} value={name} />
-                        <Input label="Cég" handleChange={({ target: { value }}: any) => setCompany(value)} value={company} />
-                        <Input label="E-mail" handleChange={({ target: { value }}: any) => setEmail(value)} type="email" value={email} />
+                        <Input required label="Név*" placeholder="Név" handleChange={({ target: { value }}: any) => setName(value)} value={name} />
+                        <Input required label="Cég név*" placeholder="Cég név" handleChange={({ target: { value }}: any) => setCompany(value)} value={company} />
+                        <Input required label="E-mail cím*" placeholder="E-mail cím" handleChange={({ target: { value }}: any) => setEmail(value)} type="email" value={email} />
                         <TextArea label="Egyéb megjegyzés" handleChange={({ target: { value }}: any) => setMessage(value)} type="textarea" value={message} />
                         <Button value="Ajánlat kérése" />
                     </StyledForm>

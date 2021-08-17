@@ -6,8 +6,10 @@ export const StyledTable = styled.table`
     text-align: left;
     margin: 2rem auto;
 
-    & thead {
+    & thead tr th {
         background-color: #ddd;
+        padding: 0.5rem 1rem;
+        
     }
 
     & tr:nth-child(even) {
@@ -27,5 +29,9 @@ export const StyledTable = styled.table`
     & td:nth-child(3) {
         width: 100px;
         text-align: center;
+    }
+
+    & td {
+        padding: 0.5rem 1rem;
     }
 `
