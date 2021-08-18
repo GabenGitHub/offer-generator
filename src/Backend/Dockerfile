@@ -13,5 +13,5 @@ COPY package.json ./
 RUN npm install --only=production
 COPY --from=0 /backend/build .
 
-EXPOSE 5000
+EXPOSE 4300
 CMD [ "node", "start.js" ]
