@@ -9,7 +9,7 @@ import { AreaProperties } from "../models/area-properties";
 
 const Map: React.FC<any> = () => {
     const [counties, setCounties]: any = useState<GeoJSON.FeatureCollection<any>>();
-    const { setSelectedAreas } = useContext<any>(SelectedAreaContext)
+    const { selectedAreas, setSelectedAreas } = useContext<any>(SelectedAreaContext)
     
     const geoJsonRef = useRef<any>();
     
@@ -31,17 +31,23 @@ const Map: React.FC<any> = () => {
                 weight: 2,
                 opacity: 6,
             });
+
+            // @ts-ignore
+            const filteredAreas = selectedAreas.filter(el => el.name !== event.target.feature.properties.name);
+            setSelectedAreas(filteredAreas);
             event.target.feature.properties.selected = false;
         } else {
             event.target.setStyle({
                 color: "red",
                 fillColor: "red"
             });
+
+            // @ts-ignore
+            setSelectedAreas(select => [...select, event.target.feature.properties]);
             event.target.feature.properties.selected = true;
         }
         
-        // @ts-ignore
-        setSelectedAreas(select => [...select, event.target.feature.properties]);
+        
     };
 
     const onMouseOverArea = (event: LeafletMouseEvent) => {
