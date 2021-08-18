@@ -6,7 +6,6 @@ import { StyledTable } from "./Table.style";
 
 const Table: React.FC<any> = () => {
     const { selectedAreas, setSelectedAreas } = useContext<any>(SelectedAreaContext)
-    console.log(selectedAreas)
 
     const formatNumberWithCommas = (number: number) => {
         return number?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -43,7 +42,7 @@ const Table: React.FC<any> = () => {
             </StyledTable>
         )
     }
-    return <>{selectedAreas}</>
+    return <></>
 }
 
 export default Table
