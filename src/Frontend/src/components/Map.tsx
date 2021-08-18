@@ -1,25 +1,47 @@
 import { Feature, Geometry } from "geojson";
 import { Layer, LeafletMouseEvent } from "leaflet";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
+import { SelectedAreaContext } from "../context/SelectedAreaContext";
 
 import hungary from "../data/counties.json";
 import { AreaProperties } from "../models/area-properties";
 
-const Map: React.FC<any> = ({updateState}) => {
+const Map: React.FC<any> = () => {
     const [counties, setCounties]: any = useState<GeoJSON.FeatureCollection<any>>();
+    const { setSelectedAreas } = useContext<any>(SelectedAreaContext)
+    
+    const geoJsonRef = useRef<any>();
     
     useEffect(() => {
+        if (geoJsonRef.current) {
+            geoJsonRef.current.clearLayers().addData(counties);
+        }
         setCounties(hungary);
-    }, []);
+    }, [counties, setCounties]);
 
     const onClickArea = (event: LeafletMouseEvent): void => {
-        event.target.setStyle({
-            color: "red",
-            fillColor: "red"
-        });
-
-        updateState(event);
+        
+        const selected = event.target.feature.properties.selected;
+        
+        if (selected) {
+            event.target.setStyle({
+                fillColor: "black",
+                color: "black",
+                weight: 2,
+                opacity: 6,
+            });
+            event.target.feature.properties.selected = false;
+        } else {
+            event.target.setStyle({
+                color: "red",
+                fillColor: "red"
+            });
+            event.target.feature.properties.selected = true;
+        }
+        
+        // @ts-ignore
+        setSelectedAreas(select => [...select, event.target.feature.properties]);
     };
 
     const onMouseOverArea = (event: LeafletMouseEvent) => {
@@ -33,6 +55,13 @@ const Map: React.FC<any> = ({updateState}) => {
             mouseover: onMouseOverArea,
         });
     };
+
+    const defaultStyle = {
+        fillColor: "black",
+        color: "black",
+        weight: 2,
+        opacity: 6,
+    }
     
     return (
         <>
@@ -42,9 +71,10 @@ const Map: React.FC<any> = ({updateState}) => {
                 url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                 />
                 <GeoJSON
-                    key='my-geojson'
+                    ref={geoJsonRef}
                     data={counties} 
                     onEachFeature={onEachArea}
+                    style={defaultStyle}
                 />
             </MapContainer>
         </>
