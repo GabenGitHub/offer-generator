@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import Input from "./Input";
 import Button from "./Button";
 import TextArea from "./TextArea";
 import { FormAction, FromContainer, Icon, StyledForm } from "./Form.style";
 import arrow from "../assets/images/up-arrow.svg";
+import { SelectedAreaContext } from "../context/SelectedAreaContext";
 
-const Form: React.FC<any> = ({selectedAreas}) => {
+const Form: React.FC<any> = () => {
+    const { selectedAreas } = useContext<any>(SelectedAreaContext)
+
     const [name, setName] = useState<string>("");
     const [company, setCompany] = useState<string>("");
     const [email, setEmail] = useState<string>("");

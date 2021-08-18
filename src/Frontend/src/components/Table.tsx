@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import { SelectedAreaContext } from "../context/SelectedAreaContext";
 import { AreaProperties } from "../models/area-properties"
 import { StyledTable } from "./Table.style";
 
 
-const Table: React.FC<any> = ({selectedAreas, removeArea}) => {
+const Table: React.FC<any> = () => {
+    const { selectedAreas, setSelectedAreas } = useContext<any>(SelectedAreaContext)
+    console.log(selectedAreas)
 
     const formatNumberWithCommas = (number: number) => {
         return number?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    };
+
+    const removeArea = (area: AreaProperties): any => {
+        // @ts-ignore
+        const newArr = selectedAreas.filter(a => a.name !== area.name);
+        setSelectedAreas(newArr);
     };
 
     if (selectedAreas.length !== 0) {
@@ -34,7 +43,7 @@ const Table: React.FC<any> = ({selectedAreas, removeArea}) => {
             </StyledTable>
         )
     }
-    return <></>
+    return <>{selectedAreas}</>
 }
 
 export default Table
