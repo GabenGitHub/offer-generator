@@ -13,21 +13,9 @@
   --hamburgerTransition: all 0.6s ease-in-out;
   --mainSpacing: 0.25rem;
   --lightShadow: 2px 5px 3px 0 rgba(0, 0, 0, 0.25);
-  --darkShadow: 4px 10px 5px 0 rgba(0, 0, 0, 0.5);
-  --primaryColor: rgb(0, 85, 255);
-  --menuColor: rgb(158, 165, 255);
-  --darkBackground: #111111;
-  --highlightBackground: linear-gradient(145deg, #72f, #c1b);
-  --menuBackground: linear-gradient(135deg, rgb(119, 0, 255), rgb(68, 0, 255));
-  --blueishBackground: linear-gradient(
-    135deg,
-    rgb(0, 85, 255),
-    rgb(0, 153, 255)
-  );
-  --lightBackground: #fff;
+  --menuBackground: linear-gradient(135deg, rgb(228, 243, 255), rgb(162, 129, 255));
   --mainWhite: #fff;
   --mainBlack: #222;
-  --mainGray: #ececec;
 }
 
 html {
@@ -257,23 +245,13 @@ button:hover .button-text {
   -o-transform: translateY(0.5rem);
 }
 
-.menu-btn-burger.white {
-  background-color: var(--mainWhite);
-}
 .menu-btn-burger.black {
   background-color: var(--mainBlack);
 }
-.menu-btn-burger.white::before,
-.menu-btn-burger.white::after {
-  background-color: var(--mainWhite);
-}
+
 .menu-btn-burger.black::before,
 .menu-btn-burger.black::after {
   background-color: var(--mainBlack);
-}
-.nav-toggle.open .menu-btn-burger.black::before,
-.nav-toggle.open .menu-btn-burger.black::after {
-  background-color: var(--mainWhite);
 }
 
 /* ANIMATION */
@@ -314,10 +292,6 @@ button:hover .button-text {
   -o-transform: translateY(-3rem);
 }
 
-.nav-links.show-links .nav-link {
-  color: var(--mainWhite);
-}
-
 .nav-links {
   display: flex;
   position: absolute;
@@ -329,7 +303,7 @@ button:hover .button-text {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 3rem;
+  font-size: 2rem;
   pointer-events: none;
   clip-path: polygon(100% 0, 100% 0, 0 100%, 0 100%);
   -webkit-clip-path: polygon(100% 0, 100% 0, 0 100%, 0 100%);
