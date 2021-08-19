@@ -1,8 +1,10 @@
+import Menu from "../components/Menu"
+
 const Admin = () => {
     return (
-        <div>
-            <h1>Admin page</h1>
-        </div>
+        <>
+            <Menu />
+        </>
     )
 }
 

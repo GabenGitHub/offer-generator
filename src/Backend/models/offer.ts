@@ -11,6 +11,7 @@ const offerSchema = new mongoose.Schema({
     company:    { type: String, required: true },
     email:      { type: String, required: true },
     message:    { type: String },
+    amount:     { type: Number },
     date:       { type: Date, default: Date.now, required: true },
 });
 
