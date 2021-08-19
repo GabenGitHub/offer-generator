@@ -13,6 +13,14 @@ export const FromContainer = styled.div`
     justify-content: center;
 `
 
+export const FromContainerAuth = styled.div`
+    background-color: #EEEEEE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+`
+
 export const FormAction = styled.div`
     text-align: center;
     margin: 2rem;

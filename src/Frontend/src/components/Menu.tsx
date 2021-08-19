@@ -33,6 +33,7 @@ const Menu = () => {
                     >
                         <div className={`menu-btn-burger ${navbarColor}`}></div>
                     </button>
+                    <button className="nav-link" onClick={() => history.push(`/`)}>Főoldal</button>
                 </div>
                 <div
                     className={openNavbar ? "nav-links show-links" : "nav-links"}
