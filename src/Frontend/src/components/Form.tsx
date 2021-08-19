@@ -1,11 +1,11 @@
 import { useState, useContext } from "react";
 import axios from "axios";
 import Input from "./Input";
-import Button from "./Button";
 import TextArea from "./TextArea";
 import { FormAction, FromContainer, Icon, StyledForm } from "./Form.style";
 import arrow from "../assets/images/up-arrow.svg";
 import { SelectedAreaContext } from "../context/SelectedAreaContext";
+import SubmitButton from "./SubmitButton";
 
 const Form: React.FC<any> = () => {
     const { selectedAreas } = useContext<any>(SelectedAreaContext)
@@ -49,7 +49,7 @@ const Form: React.FC<any> = () => {
                         <Input required label="Cég név*" placeholder="Cég név" handleChange={({ target: { value }}: any) => setCompany(value)} value={company} />
                         <Input required label="E-mail cím*" placeholder="E-mail cím" handleChange={({ target: { value }}: any) => setEmail(value)} type="email" value={email} />
                         <TextArea label="Egyéb megjegyzés" handleChange={({ target: { value }}: any) => setMessage(value)} type="textarea" value={message} />
-                        <Button value="Ajánlat kérése" />
+                        <SubmitButton value="Ajánlat kérése" />
                     </StyledForm>
                 </FromContainer>
             </>
