@@ -12,7 +12,8 @@ services:
     depends_on:
       - mongodb
     environment:
-      - DB_CONNECTION=mongodb://mongodb:27017/offer
+      - DB_CONNECTION=${DB_CONNECTION}
+      - SECRET=${SECRET}
     ports:
       - 4300:4300
     networks:
