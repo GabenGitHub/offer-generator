@@ -1,16 +1,13 @@
 import React, { useContext } from "react";
-import { SelectedAreaContext } from "../context/SelectedAreaContext";
+import { SelectedAreaContext } from "../context/contexts";
 import { AreaProperties } from "../models/area-properties"
+import formatNumberWithCommas from "../utils/utils";
 import Button from "./Button";
 import { StyledTable } from "./Table.style";
 
 
 const Table: React.FC<any> = () => {
     const { selectedAreas, setSelectedAreas } = useContext<any>(SelectedAreaContext)
-
-    const formatNumberWithCommas = (number: number) => {
-        return number?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    };
 
     const removeArea = (area: AreaProperties): any => {
         // @ts-ignore

@@ -1,13 +1,22 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useHistory, useLocation } from "react-router-dom";
 import { FromContainerAuth, StyledForm } from "../components/Form.style";
 import Input from "../components/Input";
 import Menu from "../components/Menu";
 import SubmitButton from "../components/SubmitButton";
+import { UserContext } from "../context/contexts";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const { setUser } = useContext<any>(UserContext);
+
+  const history = useHistory();
+  const location = useLocation();
+  // @ts-ignore
+  const { from } = location.state || { from: { pathname: "/admin" } };
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -21,9 +30,9 @@ const Login = () => {
       withCredentials: true,
       url: "/api/login",
     });
-    const data = await response;
-    // TODO: remove log, set user to the context
-    console.log(data);
+    const user = await response.data.user;
+    setUser(user);
+    history.replace(from);
   };
 
   return (

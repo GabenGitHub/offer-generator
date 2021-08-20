@@ -4,7 +4,7 @@ import Input from "./Input";
 import TextArea from "./TextArea";
 import { FormAction, FromContainer, Icon, StyledForm } from "./Form.style";
 import arrow from "../assets/images/up-arrow.svg";
-import { SelectedAreaContext } from "../context/SelectedAreaContext";
+import { SelectedAreaContext } from "../context/contexts";
 import SubmitButton from "./SubmitButton";
 
 const Form: React.FC<any> = () => {
