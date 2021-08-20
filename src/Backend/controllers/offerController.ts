@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import Offer from "../models/offer";
 
-const offer = async (req: Request, res: Response) => {
+const postOffer = async (req: Request, res: Response) => {
     const { areas, name, company, email, message, amount } = req.body;
 
     const newOffer = new Offer({
@@ -17,4 +17,4 @@ const offer = async (req: Request, res: Response) => {
     res.status(201).send();
 }
 
-export = offer;
+export = { postOffer };

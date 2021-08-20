@@ -1,8 +1,8 @@
-import {Request, Response} from 'express';
 import express from 'express';
 import cors from 'cors';
 import errorHandler from './middleware/errorHandler';
 import offerRoutes from './routes/offerRoutes';
+import authRoutes from './routes/authRoutes';
 
 const app = express();
 
@@ -17,7 +17,8 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
 // Routes
-app.use("/api/offer", offerRoutes);
+app.use("/api", offerRoutes);
+app.use("/api", authRoutes);
 
 // Middleware
 app.use(errorHandler);

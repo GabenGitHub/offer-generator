@@ -1,6 +1,5 @@
 import "../App.css";
 import "leaflet/dist/leaflet.css";
-import Footer from "../components/Footer";
 import Table from "../components/Table";
 import Form from "../components/Form";
 import Map from "../components/Map";
@@ -18,7 +17,6 @@ const Home = () => {
                 <Table />
                 <Form />
             </div>
-            <Footer />
         </SelectedAreaProvider>
     )
 }

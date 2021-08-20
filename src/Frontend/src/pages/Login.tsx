@@ -18,10 +18,11 @@ const Login = () => {
         email,
         password,
       },
-      // withCredentials: true,
+      withCredentials: true,
       url: "/api/login",
     });
-    const data = await response.data;
+    const data = await response;
+    // TODO: remove log, set user to the context
     console.log(data);
   };
 
