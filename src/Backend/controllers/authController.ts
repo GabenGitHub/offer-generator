@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import User from "../models/user";
 
 const login = (req: Request, res: Response, next: NextFunction) => {
