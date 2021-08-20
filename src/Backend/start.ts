@@ -1,6 +1,7 @@
 import app from './server';
-import 'dotenv/config';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const DB_CONNECTION: string = process.env.DB_CONNECTION!;
 
