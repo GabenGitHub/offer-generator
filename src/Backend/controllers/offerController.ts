@@ -15,6 +15,11 @@ const postOffer = async (req: Request, res: Response) => {
 
     await newOffer.save();
     res.status(201).send();
-}
+};
 
-export = { postOffer };
+const getOffers = async (req: Request, res: Response) => {
+    const offers = await Offer.find({});
+    res.status(200).send(offers);
+};
+
+export = { postOffer, getOffers };

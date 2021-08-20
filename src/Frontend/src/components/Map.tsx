@@ -2,7 +2,7 @@ import { Feature, Geometry } from "geojson";
 import { Layer, LeafletMouseEvent } from "leaflet";
 import { useEffect, useRef, useState, useContext, useCallback } from "react";
 import { MapContainer, TileLayer, GeoJSON } from "react-leaflet";
-import { SelectedAreaContext } from "../context/SelectedAreaContext";
+import { SelectedAreaContext } from "../context/contexts";
 
 import hungary from "../data/counties.json";
 import { AreaProperties } from "../models/area-properties";
