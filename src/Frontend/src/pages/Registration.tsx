@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { Redirect } from "react-router-dom";
 import { FromContainerAuth, StyledForm } from "../components/Form.style";
 import Input from "../components/Input";
 import Menu from "../components/Menu";
@@ -10,6 +11,7 @@ const Registration = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [password2, setPassword2] = useState<string>("");
+  const [isRegistered, setisRegistered] = useState(false);
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -25,12 +27,19 @@ const Registration = () => {
         email,
         password,
       },
-      // withCredentials: true,
-      url: "/api/registration",
+      withCredentials: true,
+      url: "/api/register",
     });
-    const data = await response.data;
+    const data = await response;
+    setisRegistered(true);
+    // TODO: remove log
     console.log(data);
+
   };
+
+  if (isRegistered) {
+    return <Redirect to="/login" />;
+  }
 
   return (
     <>
