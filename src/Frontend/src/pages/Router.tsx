@@ -20,11 +20,11 @@ const Router = () => {
                     <Route exact path="/">
                         <Home />
                     </Route>
-                    <AuthProtection>
-                        <Route exact path="/admin">
+                    <Route exact path="/admin">
+                        <AuthProtection>
                             <Admin />
-                        </Route>
-                    </AuthProtection>
+                        </AuthProtection>
+                    </Route>
                 </UserProvider>
             </Switch>
         </BrowserRouter>
