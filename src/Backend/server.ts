@@ -7,6 +7,8 @@ import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import passport from 'passport';
 import initPassport from './config/passportConfig';
+import swaggerUi from 'swagger-ui-express';
+import * as swaggerDocs from './swagger/swagger.json';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -19,9 +21,12 @@ app.use(
     })
 );
 
-const SECRET: string = process.env.SECRET as string;
+// SWAGGER
+app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Passport
+const SECRET: string = process.env.SECRET as string;
+
 const sessionOptions = {
     secret: SECRET,
     resave: false,

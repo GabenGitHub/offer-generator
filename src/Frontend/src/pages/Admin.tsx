@@ -37,7 +37,7 @@ const Admin = () => {
                                     <td>{offer.company}</td>
                                     <td>{offer.name}</td>
                                     <td>{offer.email}</td>
-                                    <td><Button onClick={() => {}} value="Részletek" margin={"no-margin"} /></td>
+                                    <td><Button onClick={() => {}} value="Részletek" /></td>
                                 </tr>
                             )
                         })
