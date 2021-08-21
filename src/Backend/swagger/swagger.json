@@ -1,0 +1,162 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "version": "1.0.0",
+        "title": "Offer API",
+        "description": "Offer API Information"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:4300",
+            "description": "Local Devevelopment"
+        },
+        {
+            "url": "https://vizsga.gaborszabo.no:4300",
+            "description": "Development"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Offer",
+            "description": "API for offers in the system"
+        },
+        {
+            "name": "Auth",
+            "description": "API for authentication in the system"
+        }
+    ],
+    "paths": {
+        "/api/offer": {
+            "post": {
+                "tags": [
+                    "Offer"
+                ],
+                "summary": "Recieve the offer form",
+                "description": "Use to recieve the offer form.",
+                "requestBody": 
+                {
+                    "description": "Offer object",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/offer"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                }
+            }
+        },
+        "/api/offers": {
+            "get": {
+                "tags": [
+                    "Offer"
+                ],
+                "summary": "Send back the offers",
+                "description": "Use to send all the offer form database.",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Recieve the login form",
+                "description": "Use to recieve the login form.",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    }
+                }
+            }
+        },
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Recieve the registration form",
+                "description": "Use to recieve the registration form.",
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Logs out the user",
+                "description": "Delete the session.",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "area": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Budapest"
+                    },
+                    "population": {
+                        "type": "number",
+                        "example": 1752286
+                    }
+                }
+            },
+            "offer": {
+                "type": "object",
+                "required": ["areas", "name", "company", "email"],
+                "properties": {
+                    "areas": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/area"
+                        }
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Gabor Szabo"
+                    },
+                    "company": {
+                        "type": "string",
+                        "example": "ABCD Tech Kft."
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "gabor.szabo@example.com"
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "Ez egy üzenet"
+                    },
+                    "amount": {
+                        "type": "number",
+                        "example": 50000
+                    }
+                }
+            }
+        }
+    }
+}
