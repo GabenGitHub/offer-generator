@@ -8,6 +8,7 @@ src/Frontend/.pnp.js
 
 # testing
 src/Frontend/coverage
+src/Backend/coverage
 
 # production
 src/Frontend/build

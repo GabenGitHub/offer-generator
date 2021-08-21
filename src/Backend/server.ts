@@ -25,7 +25,7 @@ app.use(
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 // Passport
-const SECRET: string = process.env.SECRET as string;
+const SECRET: string = process.env.SECRET || "supersecret";
 
 const sessionOptions = {
     secret: SECRET,
