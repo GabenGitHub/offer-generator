@@ -7,5 +7,6 @@ import loginRequire from '../middleware/authHandler';
 router.post("/offer", offerController.postOffer);
 router.get("/offers", loginRequire, offerController.getOffers);
 router.get("/offer/:id", offerController.getOffer);
+router.delete("/offer/:id", offerController.deleteOffer);
 
 export = router;

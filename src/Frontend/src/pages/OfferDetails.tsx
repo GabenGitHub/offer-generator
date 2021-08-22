@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import { FromContainerMain, StyledForm } from "../components/Form.style";
 import Input from "../components/Input";
 import Menu from "../components/Menu";
@@ -17,6 +17,7 @@ const OfferDetails = () => {
     const [message, setMessage] = useState<string>("");
     const [price, setPrice] = useState<number>(0);
     const [totalPrice, setTotalPrice] = useState<number>(0);
+    const [deleted, setDeleted] = useState<boolean>(false);
 
     useEffect(() => {
         const getOffer = async () => {
@@ -29,7 +30,10 @@ const OfferDetails = () => {
         };
 
         const countTotalPrice = () => {
-            const result = (price ?? 0) * offer?.amount;
+            if (!offer.amount) {
+                return;
+            }
+            const result = (price) * offer.amount;
             setTotalPrice(result);
         }
 
@@ -42,11 +46,19 @@ const OfferDetails = () => {
         console.log("Ajánlat küldése emailben")
     };
 
+    const onDelete = async () => {
+        try {
+            const response = await axios.delete(`/api/offer/${id}`);
+            if (response.status === 200) {
+                setDeleted(true);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
-
-    const onDelete = () => {
-        // TODO: implement
-        console.log("törlés")
+    if (deleted) {
+        return <Redirect to="/admin" />;
     }
 
     return (
@@ -112,7 +124,9 @@ const OfferDetails = () => {
                     required
                     label="Ár/db*"
                     placeholder="Ft/db"
-                    handleChange={({ target: { value } }: any) => setPrice(value)}
+                    handleChange={({ target: { value } }: any) => {
+                        setPrice(value);
+                    }}
                     value={price}
                     />
                     <TextArea
