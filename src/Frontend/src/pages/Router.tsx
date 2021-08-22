@@ -5,6 +5,7 @@ import Admin from "./Admin";
 import Home from "./Home";
 import Login from "./Login";
 import Registration from "./Registration";
+import Thanking from "./Thanking";
 
 const Router = () => {
     return (
@@ -19,6 +20,9 @@ const Router = () => {
                     </Route>
                     <Route exact path="/">
                         <Home />
+                    </Route>
+                    <Route exact path="/thankyou">
+                        <Thanking />
                     </Route>
                     <Route exact path="/admin">
                         <AuthProtection>

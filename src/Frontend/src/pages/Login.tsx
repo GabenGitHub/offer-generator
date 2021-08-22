@@ -30,9 +30,14 @@ const Login = () => {
       withCredentials: true,
       url: "/api/login",
     });
-    const user = await response.data.user;
-    setUser(user);
-    history.replace(from);
+
+    try {
+      const user = await response.data.user;
+      setUser(user);
+      history.replace(from);
+    } catch (error) {
+      console.log(error);      
+    }
   };
 
   return (

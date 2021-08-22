@@ -6,7 +6,7 @@ import passport from "passport";
 const login = (req: Request, res: Response, next: NextFunction) => {
     passport.authenticate("local", (err, user, info) => {
         if (err) throw err;
-        if (!user) res.send("User does not exist.");
+        if (!user) res.status(401).send("User does not exist.");
         else {
             req.logIn(user, async (err) => {
                 if (err) throw err;
