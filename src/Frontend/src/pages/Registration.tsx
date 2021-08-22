@@ -30,11 +30,14 @@ const Registration = () => {
       withCredentials: true,
       url: "/api/register",
     });
-    const data = await response;
-    setisRegistered(true);
-    // TODO: remove log
-    console.log(data);
-
+    try {
+      const data = await response;
+      if (data.status === 201) {
+        setisRegistered(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   if (isRegistered) {

@@ -6,6 +6,7 @@ import { FormAction, FromContainer, Icon, StyledForm } from "./Form.style";
 import arrow from "../assets/images/up-arrow.svg";
 import { SelectedAreaContext } from "../context/contexts";
 import SubmitButton from "./SubmitButton";
+import { Redirect } from "react-router-dom";
 
 const Form: React.FC<any> = () => {
   const { selectedAreas } = useContext<any>(SelectedAreaContext);
@@ -15,6 +16,7 @@ const Form: React.FC<any> = () => {
   const [email, setEmail] = useState<string>("");
   const [message, setMessage] = useState<string>("");
   const [amount, setAmount] = useState<number>();
+  const [success, setSuccess] = useState<boolean>(false);
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -34,12 +36,22 @@ const Form: React.FC<any> = () => {
         message,
         amount,
       },
-      // withCredentials: true,
       url: "/api/offer",
     });
-    const data = await response.data;
-    console.log(data);
+
+    try {
+      const data = await response;
+      if (data.status === 201) {
+        setSuccess(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
   };
+  if (success) {
+    return <Redirect to="/thankyou" />;
+  }
 
   if (selectedAreas.length !== 0) {
     return (
