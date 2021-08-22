@@ -27,4 +27,9 @@ const getOffer = async (req: Request, res: Response) => {
     res.status(200).send(offer);
 };
 
-export = { postOffer, getOffers, getOffer };
+const deleteOffer = async (req: Request, res: Response) => {
+    await Offer.findByIdAndDelete(req.params.id);
+    res.status(200).send();
+};
+
+export = { postOffer, getOffers, getOffer, deleteOffer };

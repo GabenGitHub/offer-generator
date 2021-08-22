@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Menu from "../components/Menu"
-import { StyledTable } from "../components/Table.style"
+import { ResponsiveOfferAdmin, StyledTableResponsive } from "../components/Table.style"
 import { formatDate } from "../utils/utils";
 import { DetailsContainer } from "./OfferDetails.style";
 
@@ -24,7 +24,7 @@ const Admin = () => {
             <Menu />
             <DetailsContainer>
                 <h2>Ajánlat kérések</h2>
-                <StyledTable>
+                <StyledTableResponsive>
                     <thead>
                         <tr>
                             <th>Cég</th>
@@ -37,17 +37,17 @@ const Admin = () => {
                         {
                             offers.map((offer: any, i: number) => {
                                 return (
-                                    <tr key={i}>
+                                    <ResponsiveOfferAdmin key={i}>
                                         <td>{offer?.company}</td>
                                         <td>{offer?.name}</td>
                                         <td>{formatDate(offer?.date)}</td>
                                         <td><button onClick={() => history.push(`/offer/${offer._id}`)}>Részletek</button></td>
-                                    </tr>
+                                    </ResponsiveOfferAdmin>
                                 )
                             })
                         }
                     </tbody>
-                </StyledTable>
+                </StyledTableResponsive>
             </DetailsContainer>
         </>
     )

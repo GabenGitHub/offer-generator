@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import { FromContainerMain, StyledForm } from "../components/Form.style";
 import Input from "../components/Input";
 import Menu from "../components/Menu";
 import SubmitButton from "../components/SubmitButton";
-import { StyledTable } from "../components/Table.style";
+import { ResponsiveAreas, ResponsiveOfferDetails, StyledTableResponsive } from "../components/Table.style";
 import TextArea from "../components/TextArea";
 import { AreaProperties } from "../models/area-properties";
 import { formatDate, formatNumberWithCommas } from "../utils/utils";
@@ -17,6 +17,7 @@ const OfferDetails = () => {
     const [message, setMessage] = useState<string>("");
     const [price, setPrice] = useState<number>(0);
     const [totalPrice, setTotalPrice] = useState<number>(0);
+    const [deleted, setDeleted] = useState<boolean>(false);
 
     useEffect(() => {
         const getOffer = async () => {
@@ -29,7 +30,10 @@ const OfferDetails = () => {
         };
 
         const countTotalPrice = () => {
-            const result = (price ?? 0) * offer?.amount;
+            if (!offer.amount) {
+                return;
+            }
+            const result = (price) * offer.amount;
             setTotalPrice(result);
         }
 
@@ -42,11 +46,19 @@ const OfferDetails = () => {
         console.log("Ajánlat küldése emailben")
     };
 
+    const onDelete = async () => {
+        try {
+            const response = await axios.delete(`/api/offer/${id}`);
+            if (response.status === 200) {
+                setDeleted(true);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
-
-    const onDelete = () => {
-        // TODO: implement
-        console.log("törlés")
+    if (deleted) {
+        return <Redirect to="/admin" />;
     }
 
     return (
@@ -54,10 +66,10 @@ const OfferDetails = () => {
             <Menu />
             <DetailsContainer>
                 <h1>Ajánlat részletei</h1>
-                <StyledTable>
+                <StyledTableResponsive>
                     <thead>
                         <tr>
-                            <th>Cég</th>
+                            <th data-form="Ceg">Cég</th>
                             <th>Név</th>
                             <th>E-mail</th>
                             <th>Mennyiség</th>
@@ -65,19 +77,19 @@ const OfferDetails = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <ResponsiveOfferDetails>
                             <td>{offer?.company}</td>
                             <td>{offer?.name}</td>
                             <td>{offer?.email}</td>
                             <td>{formatNumberWithCommas(offer?.amount)}</td>
                             <td>{formatDate(offer?.date)}</td>
-                        </tr>
+                        </ResponsiveOfferDetails>
                     </tbody>
-                </StyledTable>
+                </StyledTableResponsive>
             </DetailsContainer>
             <DetailsContainer>
                 <h2>Területek</h2>
-                <StyledTable>
+                <StyledTableResponsive>
                     <thead>
                         <tr>
                             <th>Terület</th>
@@ -88,15 +100,15 @@ const OfferDetails = () => {
                         {
                             offer?.areas?.map((area: AreaProperties) => 
                                 (
-                                    <tr key={area._id}>
+                                    <ResponsiveAreas key={area._id}>
                                         <td>{area.name}</td>
                                         <td>{formatNumberWithCommas(area.population)} fő</td>
-                                    </tr>
+                                    </ResponsiveAreas>
                                 )
                             )
                         }
                     </tbody>
-                </StyledTable>
+                </StyledTableResponsive>
             </DetailsContainer>
             <DetailsContainer>
                 <h2>Üzenet</h2>
@@ -112,7 +124,9 @@ const OfferDetails = () => {
                     required
                     label="Ár/db*"
                     placeholder="Ft/db"
-                    handleChange={({ target: { value } }: any) => setPrice(value)}
+                    handleChange={({ target: { value } }: any) => {
+                        setPrice(value);
+                    }}
                     value={price}
                     />
                     <TextArea
