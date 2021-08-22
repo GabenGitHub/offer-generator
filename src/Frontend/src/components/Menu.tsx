@@ -7,8 +7,6 @@ const Menu = () => {
     const { user, setUser } = useContext<any>(UserContext);
 
     const [openNavbar, setOpenNavbar] = useState<boolean>(false);
-    const [fixedNavbar] = useState<boolean>(false);
-    const [navbarColor] = useState<string>("black");
 
     const toggleClass = () => {
         if (!openNavbar) {
@@ -19,8 +17,7 @@ const Menu = () => {
     };
 
     const openNavbarClass: string = openNavbar ? "open" : "";
-    const fixedNavbarClass: string = fixedNavbar ? "fixed" : "";
-    const navbarClasses: string = `${openNavbarClass} ${fixedNavbarClass}`;
+    const navbarClasses: string = `${openNavbarClass}`;
     
     return (
         <nav className={`navbar ${navbarClasses}`} id="navbar">
@@ -33,9 +30,9 @@ const Menu = () => {
                         aria-label="nav toggler"
                         onClick={() => toggleClass()}
                     >
-                        <div className={`menu-btn-burger ${navbarColor}`}></div>
+                        <div className={`menu-btn-burger black`}></div>
                     </button>
-                    <button className="nav-link" onClick={() => history.push(`/`)}>Főoldal</button>
+                    <button className="nav-main" onClick={() => history.push(`/`)}>Főoldal</button>
                 </div>
                 <div
                     className={openNavbar ? "nav-links show-links" : "nav-links"}

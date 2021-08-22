@@ -5,7 +5,7 @@ import { FromContainerMain, StyledForm } from "../components/Form.style";
 import Input from "../components/Input";
 import Menu from "../components/Menu";
 import SubmitButton from "../components/SubmitButton";
-import { StyledTable } from "../components/Table.style";
+import { ResponsiveAreas, ResponsiveOfferDetails, StyledTableResponsive } from "../components/Table.style";
 import TextArea from "../components/TextArea";
 import { AreaProperties } from "../models/area-properties";
 import { formatDate, formatNumberWithCommas } from "../utils/utils";
@@ -66,10 +66,10 @@ const OfferDetails = () => {
             <Menu />
             <DetailsContainer>
                 <h1>Ajánlat részletei</h1>
-                <StyledTable>
+                <StyledTableResponsive>
                     <thead>
                         <tr>
-                            <th>Cég</th>
+                            <th data-form="Ceg">Cég</th>
                             <th>Név</th>
                             <th>E-mail</th>
                             <th>Mennyiség</th>
@@ -77,19 +77,19 @@ const OfferDetails = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <ResponsiveOfferDetails>
                             <td>{offer?.company}</td>
                             <td>{offer?.name}</td>
                             <td>{offer?.email}</td>
                             <td>{formatNumberWithCommas(offer?.amount)}</td>
                             <td>{formatDate(offer?.date)}</td>
-                        </tr>
+                        </ResponsiveOfferDetails>
                     </tbody>
-                </StyledTable>
+                </StyledTableResponsive>
             </DetailsContainer>
             <DetailsContainer>
                 <h2>Területek</h2>
-                <StyledTable>
+                <StyledTableResponsive>
                     <thead>
                         <tr>
                             <th>Terület</th>
@@ -100,15 +100,15 @@ const OfferDetails = () => {
                         {
                             offer?.areas?.map((area: AreaProperties) => 
                                 (
-                                    <tr key={area._id}>
+                                    <ResponsiveAreas key={area._id}>
                                         <td>{area.name}</td>
                                         <td>{formatNumberWithCommas(area.population)} fő</td>
-                                    </tr>
+                                    </ResponsiveAreas>
                                 )
                             )
                         }
                     </tbody>
-                </StyledTable>
+                </StyledTableResponsive>
             </DetailsContainer>
             <DetailsContainer>
                 <h2>Üzenet</h2>

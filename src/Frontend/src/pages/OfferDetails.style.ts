@@ -23,4 +23,9 @@ export const DetailsContainer = styled.div`
     & p {
         margin: 2rem 0;
     }
+
+    @media (max-width: 768px) {
+        margin: 2rem 1rem;
+        width: unset;
+    }
 `
