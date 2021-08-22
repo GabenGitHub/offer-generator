@@ -22,4 +22,9 @@ const getOffers = async (req: Request, res: Response) => {
     res.status(200).send(offers);
 };
 
-export = { postOffer, getOffers };
+const getOffer = async (req: Request, res: Response) => {
+    const offer = await Offer.findById(req.params.id);
+    res.status(200).send(offer);
+};
+
+export = { postOffer, getOffers, getOffer };

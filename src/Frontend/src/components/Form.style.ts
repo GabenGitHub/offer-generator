@@ -7,18 +7,18 @@ export const StyledForm = styled.form`
     padding: 0.5rem;
 `
 
-export const FromContainer = styled.div`
+export const FromContainerMain = styled.div`
     background-color: #EEEEEE;
     display: flex;
     justify-content: center;
 `
 
-export const FromContainerAuth = styled.div`
+export const FromContainer = styled.div`
     background-color: #EEEEEE;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 `
 
 export const FormAction = styled.div`

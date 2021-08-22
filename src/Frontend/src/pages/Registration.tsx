@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
-import { FromContainerAuth, StyledForm } from "../components/Form.style";
+import { FromContainer, StyledForm } from "../components/Form.style";
 import Input from "../components/Input";
 import Menu from "../components/Menu";
 import SubmitButton from "../components/SubmitButton";
@@ -47,7 +47,7 @@ const Registration = () => {
   return (
     <>
       <Menu />
-      <FromContainerAuth>
+      <FromContainer>
         <StyledForm onSubmit={handleSubmit}>
           <Input
             required
@@ -82,7 +82,7 @@ const Registration = () => {
           />
           <SubmitButton value="Regisztrálás" />
         </StyledForm>
-      </FromContainerAuth>
+      </FromContainer>
     </>
   );
 };

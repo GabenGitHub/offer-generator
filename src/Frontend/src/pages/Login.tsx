@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useContext, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { FromContainerAuth, StyledForm } from "../components/Form.style";
+import { FromContainer, StyledForm } from "../components/Form.style";
 import Input from "../components/Input";
 import Menu from "../components/Menu";
 import SubmitButton from "../components/SubmitButton";
@@ -43,7 +43,7 @@ const Login = () => {
   return (
     <>
       <Menu />
-      <FromContainerAuth>
+      <FromContainer>
         <StyledForm onSubmit={handleSubmit}>
           <Input
             required
@@ -63,7 +63,7 @@ const Login = () => {
           />
           <SubmitButton value="Bejelentkezés" />
         </StyledForm>
-      </FromContainerAuth>
+      </FromContainer>
     </>
   );
 };

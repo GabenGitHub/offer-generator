@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledTable = styled.table`
-    max-width: 600px;
+    max-width: 1000px;
     width: 100%;
     text-align: left;
     margin: 2rem auto;
