@@ -74,7 +74,7 @@ button {
     font-family: inherit;
 }
 button.submit {
-    width: 12rem;
+    width: 15rem;
     height: auto; 
 }
 button.regular {
@@ -90,6 +90,10 @@ button.submit .circle {
     height: 3rem;
     background: #dd3333;
     border-radius: 1.625rem;
+    -webkit-transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    -moz-transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    -ms-transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    -o-transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
 }
 button.submit .circle .icon {
     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
@@ -126,7 +130,7 @@ button.submit .button-text {
     right: 0;
     bottom: 0;
     padding: 0.75rem 0;
-    margin: 0 0 0 1.85rem;
+    margin: 0 -1rem 0 1.85rem;
     color: #282936;
     font-weight: 700;
     line-height: 1.6;
