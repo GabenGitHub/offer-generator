@@ -68,6 +68,38 @@
                 }
             }
         },
+        "/api/offer/:id": {
+            "delete": {
+                "tags": [
+                    "Offer"
+                ],
+                "summary": "Delete a specific offer",
+                "description": "Use to delete the offer in database.",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Offer"
+                ],
+                "summary": "Modify a specific offer",
+                "description": "Use to modify the offer in database.",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                }
+            }
+        },
         "/api/login": {
             "post": {
                 "tags": [

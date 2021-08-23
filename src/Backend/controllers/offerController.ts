@@ -32,4 +32,10 @@ const deleteOffer = async (req: Request, res: Response) => {
     res.status(200).send();
 };
 
-export = { postOffer, getOffers, getOffer, deleteOffer };
+const modifyOffer = async (req: Request, res: Response) => {
+    console.log(req.body.data);
+    await Offer.findByIdAndUpdate(req.params.id, req.body.data);
+    res.status(200).send();
+};
+
+export = { postOffer, getOffers, getOffer, deleteOffer, modifyOffer };

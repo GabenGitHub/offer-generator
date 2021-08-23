@@ -13,7 +13,9 @@ const Admin = () => {
     const getOffers = async () => {
         const response = await axios.get("/api/offers")
         setOffers(response.data);
-    }
+    };
+
+    const displayStatus = ["Beérkezett", "Folyamatban", "Elküldve"];
 
     useEffect(() => {
         getOffers();
@@ -30,6 +32,7 @@ const Admin = () => {
                             <th>Cég</th>
                             <th>Név</th>
                             <th>Dátum</th>
+                            <th>Státusz</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -41,6 +44,7 @@ const Admin = () => {
                                         <td>{offer?.company}</td>
                                         <td>{offer?.name}</td>
                                         <td>{formatDate(offer?.date)}</td>
+                                        <td>{displayStatus[offer?.status]}</td>
                                         <td><button onClick={() => history.push(`/offer/${offer._id}`)}>Részletek</button></td>
                                     </ResponsiveOfferAdmin>
                                 )

@@ -16,8 +16,8 @@ const app = express();
 
 app.use(
     cors({
-      origin: "http://localhost:3000",
-      credentials: true,
+        origin: "http://localhost:3000",
+        credentials: true,
     })
 );
 
@@ -41,7 +41,7 @@ app.use(passport.session());
 initPassport(passport);
 
 
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Routes

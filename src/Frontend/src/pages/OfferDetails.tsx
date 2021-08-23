@@ -10,14 +10,17 @@ import TextArea from "../components/TextArea";
 import { AreaProperties } from "../models/area-properties";
 import { formatDate, formatNumberWithCommas } from "../utils/utils";
 import { DetailsContainer } from "./OfferDetails.style";
+import { Status } from "../models/status";
 
 const OfferDetails = () => {
     const { id } = useParams<any>();
     const [offer, setOffer] = useState<any>({});
     const [message, setMessage] = useState<string>("");
-    const [price, setPrice] = useState<number>(0);
-    const [totalPrice, setTotalPrice] = useState<number>(0);
     const [deleted, setDeleted] = useState<boolean>(false);
+    const [status, setStatus] = useState<number>();
+    const [totalPrice, setTotalPrice] = useState<number>(0);
+    const [pricePerPc, setPricePerPc] = useState<number>(0);
+    const [sent, setSent] = useState<boolean>(false);
 
     useEffect(() => {
         const getOffer = async () => {
@@ -30,19 +33,36 @@ const OfferDetails = () => {
         };
 
         const countTotalPrice = () => {
-            if (!offer.amount) {
-                return;
-            }
-            const result = (price) * offer.amount;
+            const result = pricePerPc * offer.amount;
             setTotalPrice(result);
         }
 
         getOffer();
         countTotalPrice();
-    }, [id, price, offer.amount]);
+    }, [id, pricePerPc, offer.amount]);
 
     const handleSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault();
+        setStatus(Status.processed);
+
+        const response = await axios.put(`/api/offer/${id}`, {
+            method: "PUT",
+            data: {
+                totalPrice,
+                pricePerPc,
+                status,
+            },
+            withCredentials: true,
+        });
+    
+        try {
+            if (response.status === 200) {
+                setSent(true);
+            }
+        } catch (error) {
+            console.log(error);      
+        }
+
         console.log("Ajánlat küldése emailben")
     };
 
@@ -57,7 +77,7 @@ const OfferDetails = () => {
         }
     }
 
-    if (deleted) {
+    if (deleted || sent) {
         return <Redirect to="/admin" />;
     }
 
@@ -87,6 +107,7 @@ const OfferDetails = () => {
                     </tbody>
                 </StyledTableResponsive>
             </DetailsContainer>
+
             <DetailsContainer>
                 <h2>Területek</h2>
                 <StyledTableResponsive>
@@ -110,24 +131,26 @@ const OfferDetails = () => {
                     </tbody>
                 </StyledTableResponsive>
             </DetailsContainer>
+
             <DetailsContainer>
                 <h2>Üzenet</h2>
                 <p>{offer?.message}</p>
             </DetailsContainer>
+
             <DetailsContainer>
                 <h2>Műveletek</h2>
                 <SubmitButton value="Ajánlat törlése" onClick={onDelete} />
             </DetailsContainer>
+
             <FromContainerMain>
                 <StyledForm onSubmit={handleSubmit}>
                     <Input
                     required
+                    type="number"
                     label="Ár/db*"
                     placeholder="Ft/db"
-                    handleChange={({ target: { value } }: any) => {
-                        setPrice(value);
-                    }}
-                    value={price}
+                    handleChange={({ target: { value } }: any) => setPricePerPc(parseInt(value))}
+                    value={pricePerPc}
                     />
                     <TextArea
                     label="Egyéb megjegyzés"
@@ -135,8 +158,10 @@ const OfferDetails = () => {
                     type="textarea"
                     value={message}
                     />
-                    <h2>Teljes ár: {formatNumberWithCommas(totalPrice?? 0)} Ft</h2>
-                    <SubmitButton value="Ajánlat küldése" />
+                    <h2>Teljes ár: {formatNumberWithCommas(!totalPrice ? 0 : totalPrice)} Ft</h2>
+                    {
+                        offer.status === Status.processed ? <SubmitButton value="Új ajánlat küldése"/> : <SubmitButton value="Ajánlat küldése" />
+                    }
                 </StyledForm>
             </FromContainerMain>
         </>
