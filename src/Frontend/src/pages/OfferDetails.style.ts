@@ -6,7 +6,7 @@ export const DetailsContainer = styled.div`
     max-width: 1000px;
     width: 100%;
     border-radius: 10px;
-    border: 1px solid #e6e6e6;
+    border: 2px solid #e6e6e6;
     outline: none;
     font-weight: 100;
     font-size: 1rem;
@@ -16,7 +16,7 @@ export const DetailsContainer = styled.div`
         border: 1px solid #6675df;
     }
 
-    & h1, h2 {
+    & h1, h2, h3, h4 {
         text-align: center;
     }
 

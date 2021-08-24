@@ -22,11 +22,6 @@ export const StyledTableResponsive = styled.table`
         text-align: left;
     }
 
-    & td:nth-child(3) {
-        width: 100px;
-        text-align: center;
-    }
-
     & td {
         padding: 0.5rem 1rem;
     }
@@ -55,26 +50,27 @@ export const StyledTableResponsive = styled.table`
 
 export const ResponsiveOfferDetails = styled.tr`
     @media (max-width: 768px) {
-        & td:nth-of-type(1):before { content: "Cég"; }
-        & td:nth-of-type(2):before { content: "Név"; }
-        & td:nth-of-type(3):before { content: "E-mail"; }
-        & td:nth-of-type(4):before { content: "Mennyiség";}
-        & td:nth-of-type(5):before { content: "Dátum";}
+        & td:nth-of-type(1):before { content: "Cég:"; }
+        & td:nth-of-type(2):before { content: "Név:"; }
+        & td:nth-of-type(3):before { content: "E-mail:"; }
+        & td:nth-of-type(4):before { content: "Mennyiség:";}
+        & td:nth-of-type(5):before { content: "Dátum:";}
     }
 `
 
 export const ResponsiveOfferAdmin = styled.tr`
     @media (max-width: 768px) {
-        & td:nth-of-type(1):before { content: "Cég"; }
-        & td:nth-of-type(2):before { content: "Név"; }
-        & td:nth-of-type(3):before { content: "Dátum";}
+        & td:nth-of-type(1):before { content: "Cég:"; }
+        & td:nth-of-type(2):before { content: "Név:"; }
+        & td:nth-of-type(3):before { content: "Dátum:";}
+        & td:nth-of-type(4):before { content: "Státusz:";}
     }
 `
 
 export const ResponsiveAreas = styled.tr`
     @media (max-width: 768px) {
-        & td:nth-of-type(1):before { content: "Terület"; }
-        & td:nth-of-type(2):before { content: "Népesség"; }
+        & td:nth-of-type(1):before { content: "Terület:"; }
+        & td:nth-of-type(2):before { content: "Népesség:"; }
     }
 `
 
@@ -98,11 +94,6 @@ export const StyledTable = styled.table`
         padding-top: 12px;
         padding-bottom: 12px;
         text-align: left;
-    }
-
-    & td:nth-child(3) {
-        width: 100px;
-        text-align: center;
     }
 
     & td {
