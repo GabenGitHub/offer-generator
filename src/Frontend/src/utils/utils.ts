@@ -1,5 +1,9 @@
 const formatNumberWithCommas = (number: number) => {
-    return number?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    return  Math.floor(number)?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+};
+
+const formatFloatNumberWithCommas = (number: number) => {
+    return  number?.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 };
 
 const formatDate = (date: string) => {
@@ -9,4 +13,4 @@ const formatDate = (date: string) => {
     return dateArr.concat(dateArr[0] + dateArr[1] + dateArr[2])[3];
 }
 
-export { formatNumberWithCommas, formatDate };
+export { formatNumberWithCommas, formatFloatNumberWithCommas, formatDate };

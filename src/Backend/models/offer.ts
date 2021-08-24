@@ -16,6 +16,7 @@ const offerSchema = new mongoose.Schema({
     status:     { type: Number, default: Status.unProcessed },
     pricePerPc: { type: Number },
     totalPrice: { type: Number },
+    myMessage:  { type: String },
     date:       { type: Date, default: Date.now, required: true },
 });
 

@@ -65,7 +65,13 @@
                     "401": {
                         "description": "Unauthorized"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "type": ["http"],
+                        "scheme": ["basic"]
+                    }
+                ]
             }
         },
         "/api/offer/:id": {
@@ -82,7 +88,13 @@
                     "401": {
                         "description": "Unauthorized"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "type": ["http"],
+                        "scheme": ["basic"]
+                    }
+                ]
             },
             "put": {
                 "tags": [
@@ -97,7 +109,13 @@
                     "401": {
                         "description": "Unauthorized"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "type": ["http"],
+                        "scheme": ["basic"]
+                    }
+                ]
             }
         },
         "/api/login": {
@@ -139,7 +157,13 @@
                     "200": {
                         "description": "Successful"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "type": ["http"],
+                        "scheme": ["basic"]
+                    }
+                ]
             }
         }
     },
@@ -154,6 +178,18 @@
                     "population": {
                         "type": "number",
                         "example": 1752286
+                    }
+                }
+            },
+            "user": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Gabor Szabo"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "test"
                     }
                 }
             },

@@ -11,13 +11,13 @@ import { AreaProperties } from "../models/area-properties";
 import { formatDate, formatNumberWithCommas } from "../utils/utils";
 import { DetailsContainer } from "./OfferDetails.style";
 import { Status } from "../models/status";
+import Offer from "../components/Offer";
 
 const OfferDetails = () => {
     const { id } = useParams<any>();
     const [offer, setOffer] = useState<any>({});
-    const [message, setMessage] = useState<string>("");
+    const [myMessage, setMyMessage] = useState<string>("");
     const [deleted, setDeleted] = useState<boolean>(false);
-    const [status, setStatus] = useState<number>();
     const [totalPrice, setTotalPrice] = useState<number>(0);
     const [pricePerPc, setPricePerPc] = useState<number>(0);
     const [sent, setSent] = useState<boolean>(false);
@@ -34,7 +34,7 @@ const OfferDetails = () => {
 
         const countTotalPrice = () => {
             const result = pricePerPc * offer.amount;
-            setTotalPrice(result);
+            setTotalPrice(Math.floor(result));
         }
 
         getOffer();
@@ -43,14 +43,14 @@ const OfferDetails = () => {
 
     const handleSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault();
-        setStatus(Status.processed);
 
         const response = await axios.put(`/api/offer/${id}`, {
             method: "PUT",
             data: {
+                status: 2,
                 totalPrice,
                 pricePerPc,
-                status,
+                myMessage,
             },
             withCredentials: true,
         });
@@ -63,6 +63,7 @@ const OfferDetails = () => {
             console.log(error);      
         }
 
+        // TODO: send email
         console.log("Ajánlat küldése emailben")
     };
 
@@ -136,6 +137,10 @@ const OfferDetails = () => {
                 <h2>Üzenet</h2>
                 <p>{offer?.message}</p>
             </DetailsContainer>
+            
+            {
+                offer?.status !== 0 ? <Offer offer={offer} /> : null
+            }
 
             <DetailsContainer>
                 <h2>Műveletek</h2>
@@ -146,17 +151,16 @@ const OfferDetails = () => {
                 <StyledForm onSubmit={handleSubmit}>
                     <Input
                     required
-                    type="number"
                     label="Ár/db*"
                     placeholder="Ft/db"
-                    handleChange={({ target: { value } }: any) => setPricePerPc(parseInt(value))}
+                    handleChange={({ target: { value } }: any) => setPricePerPc(parseFloat(value))}
                     value={pricePerPc}
                     />
                     <TextArea
                     label="Egyéb megjegyzés"
-                    handleChange={({ target: { value } }: any) => setMessage(value)}
+                    handleChange={({ target: { value } }: any) => setMyMessage(value)}
                     type="textarea"
-                    value={message}
+                    value={myMessage}
                     />
                     <h2>Teljes ár: {formatNumberWithCommas(!totalPrice ? 0 : totalPrice)} Ft</h2>
                     {
