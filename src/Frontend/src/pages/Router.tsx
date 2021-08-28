@@ -7,6 +7,7 @@ import Login from "./Login";
 import OfferDetails from "./OfferDetails";
 import Registration from "./Registration";
 import Thanking from "./Thanking";
+import UserDetails from "./UserDetails";
 
 const Router = () => {
     return (
@@ -33,6 +34,11 @@ const Router = () => {
                     <Route exact path="/offer/:id">
                         <AuthProtection>
                             <OfferDetails />
+                        </AuthProtection>
+                    </Route>
+                    <Route exact path="/user/:id">
+                        <AuthProtection>
+                            <UserDetails />
                         </AuthProtection>
                     </Route>
                 </UserProvider>

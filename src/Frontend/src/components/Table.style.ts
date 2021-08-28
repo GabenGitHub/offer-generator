@@ -48,6 +48,17 @@ export const StyledTableResponsive = styled.table`
     }
 `
 
+export const StyledTableResponsiveUsers = styled(StyledTableResponsive)`
+    @media (max-width: 768px) {
+        & td {
+            margin-left: 80px;
+        }
+        & td:before {
+            margin-left: -80px;
+        }
+    }
+`
+
 export const ResponsiveOfferDetails = styled.tr`
     @media (max-width: 768px) {
         & td:nth-of-type(1):before { content: "Cég:"; }
@@ -71,6 +82,12 @@ export const ResponsiveAreas = styled.tr`
     @media (max-width: 768px) {
         & td:nth-of-type(1):before { content: "Terület:"; }
         & td:nth-of-type(2):before { content: "Népesség:"; }
+    }
+`
+export const ResponsiveUser = styled.tr`
+    @media (max-width: 768px) {
+        & td:nth-of-type(1):before { content: "Név:"; }
+        & td:nth-of-type(2):before { content: "E-mail:"; }
     }
 `
 

@@ -90,7 +90,7 @@ const OfferDetails = () => {
                 <StyledTableResponsive>
                     <thead>
                         <tr>
-                            <th data-form="Ceg">Cég</th>
+                            <th>Cég</th>
                             <th>Név</th>
                             <th>E-mail</th>
                             <th>Mennyiség</th>
