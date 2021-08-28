@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { SelectedAreaContext } from "../context/contexts";
 import { AreaProperties } from "../models/area-properties"
 import { formatNumberWithCommas } from "../utils/utils";
+import Button from "./Button";
 import { StyledTable } from "./Table.style";
 
 
@@ -30,7 +31,7 @@ const Table: React.FC<any> = () => {
                             <tr key={i}>
                                 <td>{area.name}</td>
                                 <td>{formatNumberWithCommas(area.population)} fő</td>
-                                <td><button onClick={() => removeArea(area)}>Törlés</button></td>
+                                <td><Button onClick={() => removeArea(area)} value={"Törlés"} /></td>
                             </tr>
                         )
                     )

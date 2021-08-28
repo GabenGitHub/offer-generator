@@ -10,7 +10,7 @@ import TextArea from "../components/TextArea";
 import { AreaProperties } from "../models/area-properties";
 import { formatDate, formatNumberWithCommas } from "../utils/utils";
 import { DetailsContainer } from "./OfferDetails.style";
-import { Status } from "../models/status";
+import { Status } from "../models/statusEnum";
 import Offer from "../components/Offer";
 
 const OfferDetails = () => {
@@ -47,7 +47,7 @@ const OfferDetails = () => {
         const response = await axios.put(`/api/offer/${id}`, {
             method: "PUT",
             data: {
-                status: 2,
+                status: Status.PROCESSED,
                 totalPrice,
                 pricePerPc,
                 myMessage,
@@ -139,7 +139,7 @@ const OfferDetails = () => {
             </DetailsContainer>
             
             {
-                offer?.status !== 0 ? <Offer offer={offer} /> : null
+                offer?.status !== Status.UNPROCESSED ? <Offer offer={offer} /> : null
             }
 
             <DetailsContainer>
@@ -149,6 +149,7 @@ const OfferDetails = () => {
 
             <FromContainerMain>
                 <StyledForm onSubmit={handleSubmit}>
+                <h2>Ajánlat adása</h2>
                     <Input
                     required
                     label="Ár/db*"
@@ -164,7 +165,7 @@ const OfferDetails = () => {
                     />
                     <h2>Teljes ár: {formatNumberWithCommas(!totalPrice ? 0 : totalPrice)} Ft</h2>
                     {
-                        offer.status === Status.processed ? <SubmitButton value="Új ajánlat küldése"/> : <SubmitButton value="Ajánlat küldése" />
+                        offer.status === Status.PROCESSED ? <SubmitButton value="Új ajánlat küldése"/> : <SubmitButton value="Ajánlat küldése" />
                     }
                 </StyledForm>
             </FromContainerMain>

@@ -1,14 +1,15 @@
-const Button = ({value, onClick, margin}: any) => {
+import { StyledButton } from "./Button.style"
+
+const Button = ({value, onClick, ...rest}: any) => {
     return (
-        <div className={`button-container ${margin}`}>
-            <button onClick={onClick} className="submit regular">
-                <span className="circle" aria-hidden="true">
-                    <span className="icon arrow"></span>
-                </span>
-                <span className="button-text">{value}</span>
-            </button>
-        </div>
+        <StyledButton
+            onClick={onClick}
+            {...rest}
+        >
+        {value}
+        </StyledButton>
     )
 }
+
 
 export default Button;
