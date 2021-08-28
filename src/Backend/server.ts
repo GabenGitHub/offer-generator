@@ -10,6 +10,7 @@ import initPassport from './config/passportConfig';
 import swaggerUi from 'swagger-ui-express';
 import * as swaggerDocs from './swagger/swagger.json';
 import dotenv from 'dotenv';
+import userRoutes from './routes/userRoutes';
 dotenv.config();
 
 const app = express();
@@ -45,6 +46,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Routes
+app.use("/api", userRoutes);
 app.use("/api", offerRoutes);
 app.use("/api", authRoutes);
 

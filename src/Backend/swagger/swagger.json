@@ -26,6 +26,29 @@
         }
     ],
     "paths": {
+        "/api/offers": {
+            "get": {
+                "tags": [
+                    "Offer"
+                ],
+                "summary": "Send back the offers",
+                "description": "Use to send all the offer form database.",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "type": ["http"],
+                        "scheme": ["basic"]
+                    }
+                ]
+            }
+        },
         "/api/offer": {
             "post": {
                 "tags": [
@@ -51,36 +74,13 @@
                 }
             }
         },
-        "/api/offers": {
+        "/api/offer/:id": {
             "get": {
                 "tags": [
                     "Offer"
                 ],
-                "summary": "Send back the offers",
-                "description": "Use to send all the offer form database.",
-                "responses": {
-                    "200": {
-                        "description": "Successful"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    }
-                },
-                "security": [
-                    {
-                        "type": ["http"],
-                        "scheme": ["basic"]
-                    }
-                ]
-            }
-        },
-        "/api/offer/:id": {
-            "delete": {
-                "tags": [
-                    "Offer"
-                ],
-                "summary": "Delete a specific offer",
-                "description": "Use to delete the offer in database.",
+                "summary": "Get a specific offer",
+                "description": "Use to get the offer from database.",
                 "responses": {
                     "200": {
                         "description": "Successful"
@@ -102,6 +102,27 @@
                 ],
                 "summary": "Modify a specific offer",
                 "description": "Use to modify the offer in database.",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "type": ["http"],
+                        "scheme": ["basic"]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Offer"
+                ],
+                "summary": "Delete a specific offer",
+                "description": "Use to delete the offer in database.",
                 "responses": {
                     "200": {
                         "description": "Successful"
@@ -156,6 +177,94 @@
                 "responses": {
                     "200": {
                         "description": "Successful"
+                    }
+                },
+                "security": [
+                    {
+                        "type": ["http"],
+                        "scheme": ["basic"]
+                    }
+                ]
+            }
+        },
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Send back the users",
+                "description": "Use to send all the users form database.",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "type": ["http"],
+                        "scheme": ["basic"]
+                    }
+                ]
+            }
+        },
+        "/api/user/:id": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get a specific user",
+                "description": "Use to get the user from database.",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "type": ["http"],
+                        "scheme": ["basic"]
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Modify a specific user",
+                "description": "Use to modify the user in database.",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "type": ["http"],
+                        "scheme": ["basic"]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Delete a specific user",
+                "description": "Use to delete the user in database.",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
                     }
                 },
                 "security": [

@@ -16,7 +16,7 @@ const AdminOffers = () => {
     
     useEffect(() => {
         (async () => {
-            const offers = await axios.get("/api/offers")
+            const offers = await axios.get("/api/offers");
             setOffers(offers.data);
             setFilteredOffers(offers.data);
         })()
@@ -53,7 +53,7 @@ const AdminOffers = () => {
                     </thead>
                     <tbody>
                         {
-                            filteredOffers.map((offer: any, i: number) => {
+                            filteredOffers?.map((offer: any, i: number) => {
                                 return (
                                     <ResponsiveOfferAdmin key={i}>
                                         <td>{offer?.company}</td>
