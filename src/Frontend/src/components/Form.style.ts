@@ -5,6 +5,11 @@ export const StyledForm = styled.form`
     flex-direction: column;
     width: 600px;
     padding: 0.5rem;
+
+    & h2 {
+        text-align: center;
+        margin: 1rem 0;
+    }
 `
 
 export const FromContainerMain = styled.div`
