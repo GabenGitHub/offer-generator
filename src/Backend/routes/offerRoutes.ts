@@ -4,8 +4,11 @@ const router: Router = express.Router({ mergeParams: true });
 import offerController from "../controllers/offerController";
 import loginRequire from '../middleware/authHandler';
 
-router.post("/offer", offerController.postOffer);
 router.get("/offers", loginRequire, offerController.getOffers);
-// router.get("/offer/:id", offerController.getOffers);
+
+router.post("/offer", offerController.postOffer);
+router.get("/offer/:id", loginRequire, offerController.getOffer);
+router.put("/offer/:id", loginRequire, offerController.modifyOffer);
+router.delete("/offer/:id", loginRequire, offerController.deleteOffer);
 
 export = router;

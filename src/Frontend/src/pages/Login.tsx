@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useContext, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
-import { FromContainerAuth, StyledForm } from "../components/Form.style";
+import { FromContainer, StyledForm } from "../components/Form.style";
 import Input from "../components/Input";
 import Menu from "../components/Menu";
 import SubmitButton from "../components/SubmitButton";
@@ -30,15 +30,20 @@ const Login = () => {
       withCredentials: true,
       url: "/api/login",
     });
-    const user = await response.data.user;
-    setUser(user);
-    history.replace(from);
+
+    try {
+      const user = await response.data.user;
+      setUser(user);
+      history.replace(from);
+    } catch (error) {
+      console.log(error);      
+    }
   };
 
   return (
     <>
       <Menu />
-      <FromContainerAuth>
+      <FromContainer>
         <StyledForm onSubmit={handleSubmit}>
           <Input
             required
@@ -58,7 +63,7 @@ const Login = () => {
           />
           <SubmitButton value="Bejelentkezés" />
         </StyledForm>
-      </FromContainerAuth>
+      </FromContainer>
     </>
   );
 };

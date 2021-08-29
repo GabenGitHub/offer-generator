@@ -74,7 +74,7 @@ button {
     font-family: inherit;
 }
 button.submit {
-    width: 12rem;
+    width: 15rem;
     height: auto; 
 }
 button.regular {
@@ -90,6 +90,10 @@ button.submit .circle {
     height: 3rem;
     background: #dd3333;
     border-radius: 1.625rem;
+    -webkit-transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    -moz-transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    -ms-transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    -o-transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
 }
 button.submit .circle .icon {
     transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
@@ -126,7 +130,7 @@ button.submit .button-text {
     right: 0;
     bottom: 0;
     padding: 0.75rem 0;
-    margin: 0 0 0 1.85rem;
+    margin: 0 -1rem 0 1.85rem;
     color: #282936;
     font-weight: 700;
     line-height: 1.6;
@@ -279,7 +283,6 @@ button:hover .button-text {
   margin: 1rem;
   text-transform: uppercase;
   border-bottom: 2px solid transparent;
-  letter-spacing: var(--mainSpacing);
   transition: var(--mainTransition);
   -webkit-transition: var(--mainTransition);
   -moz-transition: var(--mainTransition);
@@ -290,6 +293,11 @@ button:hover .button-text {
   -moz-transform: translateY(-3rem);
   -ms-transform: translateY(-3rem);
   -o-transform: translateY(-3rem);
+}
+
+.nav-main {
+  margin: 1rem;
+  text-transform: uppercase;
 }
 
 .nav-links {
@@ -325,19 +333,19 @@ button:hover .button-text {
 }
 
 @media screen and (max-height: 640px) {
-  .nav-link {
+  .nav-link, .nav-main {
     margin: 0.3rem;
   }
 }
 
 @media screen and (max-height: 480px) {
-  .nav-link {
+  .nav-link, .nav-main {
     line-height: 1.2;
   }
 }
 
 @media screen and (max-height: 415px) {
-  .nav-link {
+  .nav-link, .nav-main {
     line-height: 1;
   }
 }
@@ -375,9 +383,10 @@ button:hover .button-text {
     padding: 0.3rem 0;
   }
 
-  .nav-link {
+  .nav-link, .nav-main {
     padding: 0;
     margin: 0 2rem 0 0;
+    font-size: 1.2rem;
     border-bottom: 1px solid transparent;
     text-transform: capitalize;
     transition: none;
@@ -393,7 +402,6 @@ button:hover .button-text {
   }
 
   .nav-link:hover {
-    border-color: var(--mainBlack);
     background: transparent;
     color: var(--mainBlack);
     padding: 0;
@@ -405,6 +413,10 @@ button:hover .button-text {
   transition: var(--mainTransition);
   box-shadow: var(--lightShadow);
   background: var(--mainWhite);
+  -webkit-transition: var(--mainTransition);
+  -moz-transition: var(--mainTransition);
+  -ms-transition: var(--mainTransition);
+  -o-transition: var(--mainTransition);
 }
 
 /* end of navbar */

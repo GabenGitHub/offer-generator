@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
-import { FromContainerAuth, StyledForm } from "../components/Form.style";
+import { FromContainer, StyledForm } from "../components/Form.style";
 import Input from "../components/Input";
 import Menu from "../components/Menu";
 import SubmitButton from "../components/SubmitButton";
@@ -30,11 +30,14 @@ const Registration = () => {
       withCredentials: true,
       url: "/api/register",
     });
-    const data = await response;
-    setisRegistered(true);
-    // TODO: remove log
-    console.log(data);
-
+    try {
+      const data = await response;
+      if (data.status === 201) {
+        setisRegistered(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   if (isRegistered) {
@@ -44,7 +47,7 @@ const Registration = () => {
   return (
     <>
       <Menu />
-      <FromContainerAuth>
+      <FromContainer>
         <StyledForm onSubmit={handleSubmit}>
           <Input
             required
@@ -79,7 +82,7 @@ const Registration = () => {
           />
           <SubmitButton value="Regisztrálás" />
         </StyledForm>
-      </FromContainerAuth>
+      </FromContainer>
     </>
   );
 };

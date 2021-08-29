@@ -22,4 +22,19 @@ const getOffers = async (req: Request, res: Response) => {
     res.status(200).send(offers);
 };
 
-export = { postOffer, getOffers };
+const getOffer = async (req: Request, res: Response) => {
+    const offer = await Offer.findById(req.params.id);
+    res.status(200).send(offer);
+};
+
+const deleteOffer = async (req: Request, res: Response) => {
+    await Offer.findByIdAndDelete(req.params.id);
+    res.status(200).send();
+};
+
+const modifyOffer = async (req: Request, res: Response) => {
+    await Offer.findByIdAndUpdate(req.params.id, req.body.data);
+    res.status(200).send();
+};
+
+export = { postOffer, getOffers, getOffer, deleteOffer, modifyOffer };

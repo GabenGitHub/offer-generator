@@ -5,20 +5,25 @@ export const StyledForm = styled.form`
     flex-direction: column;
     width: 600px;
     padding: 0.5rem;
+
+    & h2 {
+        text-align: center;
+        margin: 1rem 0;
+    }
+`
+
+export const FromContainerMain = styled.div`
+    background-color: #EEEEEE;
+    display: flex;
+    justify-content: center;
 `
 
 export const FromContainer = styled.div`
     background-color: #EEEEEE;
     display: flex;
     justify-content: center;
-`
-
-export const FromContainerAuth = styled.div`
-    background-color: #EEEEEE;
-    display: flex;
-    justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 `
 
 export const FormAction = styled.div`

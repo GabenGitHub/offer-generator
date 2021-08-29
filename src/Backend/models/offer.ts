@@ -1,4 +1,5 @@
 import mongoose, { model } from 'mongoose';
+import { Status } from './statusEnum';
 
 const areaSchema = new mongoose.Schema({
     name:       { type: String, required: true },
@@ -12,6 +13,10 @@ const offerSchema = new mongoose.Schema({
     email:      { type: String, required: true },
     message:    { type: String },
     amount:     { type: Number },
+    status:     { type: String, default: Status.UNPROCESSED },
+    pricePerPc: { type: Number },
+    totalPrice: { type: Number },
+    myMessage:  { type: String },
     date:       { type: Date, default: Date.now, required: true },
 });
 
