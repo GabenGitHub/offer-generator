@@ -98,3 +98,26 @@ describe("Test offer routes", () => {
     });
 });
 
+describe("Test user routes", () => {
+    it("test get users", async () => {
+        const response = await request.get("/api/users");
+
+        expect(response.status).toBe(401);
+    });
+    it("test get user", async () => {
+        const response = await request.get("/api/user/7kj5l2bn32");
+
+        expect(response.status).toBe(401);
+    });
+    it("test modify user", async () => {
+        const response = await request.put("/api/user/7kj5l2bn32");
+
+        expect(response.status).toBe(401);
+    });
+    it("test delete user", async () => {
+        const response = await request.delete("/api/user/7kj5l2bn32");
+
+        expect(response.status).toBe(401);
+    });
+});
+
