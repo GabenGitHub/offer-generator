@@ -21,7 +21,7 @@ const Table: React.FC<any> = () => {
                 <thead>
                     <tr>
                         <th>Terület</th>
-                        <th colSpan={2}>Népesség</th>
+                        <th colSpan={2}>Postaláda</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,7 +30,7 @@ const Table: React.FC<any> = () => {
                         (
                             <tr key={i}>
                                 <td>{area.name}</td>
-                                <td>{formatNumberWithCommas(area.population)} fő</td>
+                                <td>{formatNumberWithCommas(area.mailbox)} db</td>
                                 <td><Button onClick={() => removeArea(area)} value={"Törlés"} /></td>
                             </tr>
                         )

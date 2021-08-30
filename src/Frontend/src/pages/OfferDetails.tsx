@@ -102,7 +102,7 @@ const OfferDetails = () => {
                             <td>{offer?.company}</td>
                             <td>{offer?.name}</td>
                             <td>{offer?.email}</td>
-                            <td>{formatNumberWithCommas(offer?.amount)}</td>
+                            <td>{formatNumberWithCommas(offer?.amount)} db</td>
                             <td>{formatDate(offer?.date)}</td>
                         </ResponsiveOfferDetails>
                     </tbody>
@@ -115,7 +115,7 @@ const OfferDetails = () => {
                     <thead>
                         <tr>
                             <th>Terület</th>
-                            <th colSpan={2}>Népesség</th>
+                            <th colSpan={2}>Postaláda</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -124,7 +124,7 @@ const OfferDetails = () => {
                                 (
                                     <ResponsiveAreas key={area._id}>
                                         <td>{area.name}</td>
-                                        <td>{formatNumberWithCommas(area.population)} fő</td>
+                                        <td>{formatNumberWithCommas(area.mailbox)} db</td>
                                     </ResponsiveAreas>
                                 )
                             )
