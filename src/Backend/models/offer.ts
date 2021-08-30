@@ -3,7 +3,7 @@ import { Status } from './statusEnum';
 
 const areaSchema = new mongoose.Schema({
     name:       { type: String, required: true },
-    population: { type: Number, required: true },
+    mailbox:    { type: Number, required: true },
 });
 
 const offerSchema = new mongoose.Schema({

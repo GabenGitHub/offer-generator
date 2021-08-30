@@ -77,7 +77,7 @@ describe("Test offer routes", () => {
             area: [
                 {
                     name: "Budapest",
-                    population: 1234567,
+                    mailbox: 1234567,
                 }
             ],
             name: "Gabor Szabo",

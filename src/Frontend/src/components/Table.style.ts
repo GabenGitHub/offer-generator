@@ -81,7 +81,7 @@ export const ResponsiveOfferAdmin = styled.tr`
 export const ResponsiveAreas = styled.tr`
     @media (max-width: 768px) {
         & td:nth-of-type(1):before { content: "Terület:"; }
-        & td:nth-of-type(2):before { content: "Népesség:"; }
+        & td:nth-of-type(2):before { content: "Postláda:"; }
     }
 `
 export const ResponsiveUser = styled.tr`

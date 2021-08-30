@@ -20,7 +20,7 @@ const Form: React.FC<any> = () => {
   const [success, setSuccess] = useState<boolean>(false);
 
   const countAmount = (selectedAreas: any[]) => {
-    const defaultAmount = selectedAreas.reduce((sum: number, area: any) => sum + area.population, 0);
+    const defaultAmount = selectedAreas.reduce((sum: number, area: any) => sum + area.mailbox, 0);
     setAmount(defaultAmount);
   };
 
