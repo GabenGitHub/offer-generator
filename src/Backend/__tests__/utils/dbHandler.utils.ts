@@ -8,14 +8,7 @@ const dbConnect = async () => {
 
   const uri = mongoServer.getUri();
 
-  const mongooseOpts = {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  };
-
-  await mongoose.connect(uri, mongooseOpts);
+  await mongoose.connect(uri);
 };
 
 const dbDisconnect = async () => {
