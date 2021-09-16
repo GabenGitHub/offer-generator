@@ -40,6 +40,7 @@ jobs:
       - run: git config --global user.name ${{ secrets.GIT_NAME }}
       - run: git config --global user.email ${{ secrets.GIT_EMAIL }}
       - run: npm version patch --prefix src/Frontend/
+      - run: git add . && git commit -m "Bump version" -a
       - run: git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
         
       - name: Set up QEMU
