@@ -4,6 +4,8 @@
   "version": "0.3.2",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
     "@mui/material": "^5.0.0",
     "@mui/x-data-grid": "^4.0.0",
     "@react-leaflet/core": "^1.1.0",
