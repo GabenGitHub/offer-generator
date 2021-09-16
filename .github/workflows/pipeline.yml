@@ -44,6 +44,8 @@ jobs:
       - name: Bump version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@master
+        with:
+          path: src/Frontend/
       - run: git add . && git commit -m "Bump version to ${{ steps.package-version.outputs.current-version }}" -a
       - run: git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
         
