@@ -3,5 +3,4 @@ export interface AreaProperties {
     name: string,
     population: number,
     mailbox: number,
-    selected: boolean,
 }
