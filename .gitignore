@@ -24,6 +24,7 @@ src/Frontend/.env.production.local
 src/Frontend/npm-debug.log*
 src/Frontend/yarn-debug.log*
 src/Frontend/yarn-error.log*
+src/Frontend/target
 
 .env
 .env.production
