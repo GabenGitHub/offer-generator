@@ -33,14 +33,14 @@ jobs:
     needs: [Backend-test, Frontend-test]
     runs-on: ubuntu-latest
     steps:
-      - name: Bump version and push tag
-        uses: TriPSs/conventional-changelog-action@master
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
-          github-token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
-          git-message: 'chore(release): {version}'
-          preset: 'react'
-          tag-prefix: ''
-          output-file: 'CHANGELOG.md'
+         token: ${{ secrets.GH_PERSONAL_ACCESS_TOKEN }}
+      - run: git config --global user.name ${{ secrets.GIT_NAME }}
+      - run: git config --global user.email ${{ secrets.GIT_EMAIL }}
+      - run: npm version patch --prefix src/Backend/
+      - run: git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
         
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -78,7 +78,7 @@ jobs:
       - run: git config --global user.name ${{ secrets.GIT_NAME }}
       - run: git config --global user.email ${{ secrets.GIT_EMAIL }}
       - run: npm version patch --prefix src/Backend/
-      - run: git push
+      - run: git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
         
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
