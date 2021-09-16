@@ -20,4 +20,10 @@ const offerSchema = new mongoose.Schema({
     date:       { type: Date, default: Date.now, required: true },
 });
 
+offerSchema.virtual('id').get(function(): mongoose.VirtualType {
+    // @ts-ignore
+    return this._id;
+});
+offerSchema.set('toJSON', { virtuals: true });
+
 export = model('Offer', offerSchema);
