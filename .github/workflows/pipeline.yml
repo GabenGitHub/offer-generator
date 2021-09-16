@@ -41,11 +41,9 @@ jobs:
       - run: git config --global user.email ${{ secrets.GIT_EMAIL }}
       - run: npm version patch --prefix src/Frontend/
 
-      - name: get-npm-version
+      - name: Bump version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@master
-      
-      - name: Bump version
       - run: git add . && git commit -m "Bump version to ${{ steps.package-version.outputs.current-version }}" -a
       - run: git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
         
