@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../context/contexts";
 
 const Menu = () => {
+    const { t, i18n } = useTranslation();
     const history = useHistory();
     const { user, setUser } = useContext<any>(UserContext);
 
@@ -32,7 +34,7 @@ const Menu = () => {
                     >
                         <div className={`menu-btn-burger black`}></div>
                     </button>
-                    <button className="nav-main" onClick={() => history.push(`/`)}>Főoldal</button>
+                    <button className="nav-main" onClick={() => history.push(`/`)}>{t('menu.mainPage')}</button>
                 </div>
                 <div
                     className={openNavbar ? "nav-links show-links" : "nav-links"}
@@ -48,7 +50,7 @@ const Menu = () => {
                                         .then((res) => res.json())
                                         .then((data) => setUser())
                                         .catch((err) => console.error(err))}>Kijelentkezés</button>
-                                <button className="nav-link" onClick={() => history.push(`/admin`)}>Adminisztráció</button>
+                                <button className="nav-link" onClick={() => history.push(`/admin`)}>{t('menu.administration')}</button>
                             </>
                         )
                     }
@@ -59,6 +61,12 @@ const Menu = () => {
                                 <button className="nav-link" onClick={() => history.push(`/registration`)}>Regisztrálás</button>
                             </>
                         )
+                    }
+                    {
+                        i18n.language === 'en'
+                        ? <button className="nav-link" onClick={() => i18n.changeLanguage('hu')}>{t('menu.changeLanguage')}</button>
+                        : <button className="nav-link" onClick={() => i18n.changeLanguage('en')}>{t('menu.changeLanguage')}</button>
+
                     }
                 </div>
             </div>
