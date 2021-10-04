@@ -2,6 +2,37 @@
     "menu": {
         "mainPage": "Main page",
         "administration": "Administration",
-        "changeLanguage": "Change language"
+        "changeLanguage": "Change language",
+        "logOut": "Log out",
+        "logIn": "Log in",
+        "registration": "Registration"
+    },
+    "form": {
+        "name": "Name",
+        "companyName": "Company name",
+        "email": "E-mail address",
+        "quantity": "Quantity",
+        "default": "Default",
+        "pcs": "pcs",
+        "other": "Other",
+        "submit": "Request offer",
+        "selectTerritory": "Select territory"
+    },
+    "header": {
+        "priceOffer": "Price Offer"
+    },
+    "table": {
+        "territory": "Territory",
+        "mailbox": "Mailbox",
+        "delete": "Delete"
+    },
+    "offer": {
+        "offer": "Offer",
+        "quantity": "Quantity",
+        "pricePerPiece": "Price/piece",
+        "totalPrice": "Total Price",
+        "pcs": "pcs",
+        "ft": "HUF",
+        "response": "Response"
     }
 }

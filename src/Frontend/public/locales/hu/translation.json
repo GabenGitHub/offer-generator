@@ -2,6 +2,38 @@
     "menu": {
         "mainPage": "Főoldal",
         "administration": "Adminisztráció",
-        "changeLanguage": "Nyelvváltás"
+        "changeLanguage": "Nyelvváltás",
+        "logOut": "Kijelentkezés",
+        "logIn": "Bejelentkezés",
+        "registration": "Regisztrálás"
+    },
+    "form": {
+        "name": "Név",
+        "companyName": "Cég név",
+        "email": "E-mail cím",
+        "quantity": "Mennyiség",
+        "default": "Alapértelmezett",
+        "pcs": "db",
+        "other": "Egyéb megjegyzés",
+        "submit": "Ajánlat kérése",
+        "selectTerritory":  "Válassza ki a területet"
+    },
+    "header": {
+        "priceOffer": "Árajánlat"
+    },
+    "table": {
+        "territory": "Terület",
+        "mailbox": "Postaláda",
+        "delete": "Törlés"
+    },
+    "offer": {
+        "offer": "Ajánlat",
+        "quantity": "Mennyiség",
+        "pricePerPiece": "Ár/db",
+        "totalPrice": "Teljes összeg",
+        "pcs": "db",
+        "ft": "Ft",
+        "response": "Válasz"
     }
+
 }

@@ -8,9 +8,11 @@ import { SelectedAreaContext } from "../context/contexts";
 import SubmitButton from "./SubmitButton";
 import { Redirect } from "react-router-dom";
 import { formatNumberWithCommas } from "../utils/utils";
+import { useTranslation } from 'react-i18next';
 
 const Form: React.FC<any> = () => {
   const { selectedAreas } = useContext<any>(SelectedAreaContext);
+  const { t } = useTranslation();
 
   const [name, setName] = useState<string>("");
   const [company, setCompany] = useState<string>("");
@@ -64,54 +66,68 @@ const Form: React.FC<any> = () => {
 
   if (selectedAreas.length !== 0) {
     return (
-      <>
-        <FromContainerMain>
-          <StyledForm onSubmit={handleSubmit}>
-            <Input
-              required
-              label="Név*"
-              placeholder="Név"
-              handleChange={({ target: { value } }: any) => setName(value)}
-              value={name}
-            />
-            <Input
-              required
-              label="Cég név*"
-              placeholder="Cég név"
-              handleChange={({ target: { value } }: any) => setCompany(value)}
-              value={company}
-            />
-            <Input
-              required
-              label="E-mail cím*"
-              placeholder="E-mail cím"
-              handleChange={({ target: { value } }: any) => setEmail(value)}
-              type="email"
-              value={email}
-            />
-            <Input
-              type="number"
-              label="Mennyiség"
-              placeholder={`Alapértelmezett ${formatNumberWithCommas(amount ?? 0)} db`}
-              handleChange={({ target: { value } }: any) => setAmount(value)}
-              value={amount}
-            />
-            <TextArea
-              label="Egyéb megjegyzés"
-              handleChange={({ target: { value } }: any) => setMessage(value)}
-              type="textarea"
-              value={message}
-            />
-            <SubmitButton value="Ajánlat kérése" />
-          </StyledForm>
-        </FromContainerMain>
-      </>
+        <>
+            <FromContainerMain>
+                <StyledForm onSubmit={handleSubmit}>
+                    <Input
+                        required
+                        label={`${t('form.name')}*`}
+                        placeholder={t('form.name')}
+                        handleChange={({ target: { value } }: any) =>
+                            setName(value)
+                        }
+                        value={name}
+                    />
+                    <Input
+                        required
+                        label={`${t('form.companyName')}*`}
+                        placeholder={t('form.companyName')}
+                        handleChange={({ target: { value } }: any) =>
+                            setCompany(value)
+                        }
+                        value={company}
+                    />
+                    <Input
+                        required
+                        label={`${t('form.email')}*`}
+                        placeholder={t('form.email')}
+                        handleChange={({ target: { value } }: any) =>
+                            setEmail(value)
+                        }
+                        type="email"
+                        value={email}
+                    />
+                    <Input
+                        type="number"
+                        label={t('form.quantity')}
+                        placeholder={`${t(
+                            'form.default'
+                        )} ${formatNumberWithCommas(amount ?? 0)} ${t(
+                            'form.pcs'
+                        )}`}
+                        handleChange={({ target: { value } }: any) =>
+                            setAmount(value)
+                        }
+                        value={amount}
+                    />
+                    <TextArea
+                        label={t('form.other')}
+                        handleChange={({ target: { value } }: any) =>
+                            setMessage(value)
+                        }
+                        type="textarea"
+                        value={message}
+                    />
+                    <SubmitButton value={t('form.submit')} />
+                </StyledForm>
+            </FromContainerMain>
+        </>
     );
   }
   return (
     <FormAction>
       <Icon src={arrow} alt="up arrow" />
-      <h2>Válasszon területet</h2>
+      <h2>{t("form.selectTerritory")}</h2>
     </FormAction>
   );
 };

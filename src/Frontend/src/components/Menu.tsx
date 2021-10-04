@@ -49,7 +49,7 @@ const Menu = () => {
                                     fetch("/api/logout")
                                         .then((res) => res.json())
                                         .then((data) => setUser())
-                                        .catch((err) => console.error(err))}>Kijelentkezés</button>
+                                        .catch((err) => console.error(err))}>{t('menu.logOut')}</button>
                                 <button className="nav-link" onClick={() => history.push(`/admin`)}>{t('menu.administration')}</button>
                             </>
                         )
@@ -57,8 +57,8 @@ const Menu = () => {
                     {
                         !user && (
                             <>
-                                <button className="nav-link" onClick={() => history.push(`/login`)}>Bejelentkezés</button>
-                                <button className="nav-link" onClick={() => history.push(`/registration`)}>Regisztrálás</button>
+                                <button className="nav-link" onClick={() => history.push(`/login`)}>{t('menu.logIn')}</button>
+                                <button className="nav-link" onClick={() => history.push(`/registration`)}>{t('menu.registration')}</button>
                             </>
                         )
                     }
