@@ -1,11 +1,12 @@
 {
     "menu": {
-        "mainPage": "Main page",
+        "mainPage": "Home",
         "administration": "Administration",
         "changeLanguage": "Change language",
-        "logOut": "Log out",
-        "logIn": "Log in",
-        "registration": "Registration"
+        "logOut": "Logout",
+        "logIn": "Login",
+        "registration": "Registration",
+        "welcome": "Welcome"
     },
     "form": {
         "name": "Name",
@@ -16,15 +17,16 @@
         "pcs": "pcs",
         "other": "Other",
         "submit": "Request offer",
-        "selectTerritory": "Select territory"
+        "selectTerritory": "Select area"
     },
     "header": {
-        "priceOffer": "Price Offer"
+        "priceOffer": "Offer"
     },
     "table": {
-        "territory": "Territory",
+        "territory": "Area",
         "mailbox": "Mailbox",
-        "delete": "Delete"
+        "delete": "Delete",
+        "pcs": "pcs"
     },
     "offer": {
         "offer": "Offer",
@@ -32,7 +34,74 @@
         "pricePerPiece": "Price/piece",
         "totalPrice": "Total Price",
         "pcs": "pcs",
-        "ft": "HUF",
+        "ft": "Ft",
         "response": "Response"
+    },
+    "admin": {
+        "offers": "Offers",
+        "users": "Users"
+    },
+
+    "adminOffers": {
+        "name": "Name",
+        "company": "Company",
+        "dateOfOffer": "Date of Offer",
+        "date": "Date",
+        "status": "Status",
+        "offerStatus": "Status of Offer"
+
+    },
+    "adminUsers": {
+        "handlingUsers": "Userhandling", 
+        "name": "Name",
+        "email": "E-mail",
+        "details": "Details"
+    },
+    "login": {
+        "email": "E-mail address",
+        "password": "Password",
+        "login": "Login"
+    },
+    "offerDetails": {
+        "offerDetails": "Details of Offer",
+        "name": "Name",
+        "email": "E-mail",
+        "quantity": "Quantity",
+        "date": "Date",
+        "pcs": "pcs",
+        "territories": "Areas",
+        "territory": "Area",
+        "mailbox": "Mailbox",
+        "message": "Message",
+        "actions": "Actions",
+        "deleteOffer": "Delete Offer",
+        "giveOffer": "Give Offer",
+        "pricePerPiece": "Price/pcs",
+        "FtPerPiece": "Ft/pcs",
+        "other": "Other",
+        "totalPrice": "Total price",
+        "sendNewOffer": "Send new offer",
+        "sendOffer": "Send offer"
+    },
+    "registration": {
+        "name": "Name",
+        "email": "E-mail address",
+        "password": "Password",
+        "repeatPassword": "Repeat password",
+        "registration": "registration"
+    },
+    "thanking": {
+        "thankYou": "Thank you for your interest",
+        "received": "We received your request",
+        "sending": "we will send you the offer soon."
+    },
+    "userDetails": {
+        "userDetails": "User details",
+        "name": "Name",
+        "email": "E-mail",
+        "actions": "Actions",
+        "changeUser": "Change user",
+        "change": "Change",
+        "deleteUser": "Delete user"
     }
 }

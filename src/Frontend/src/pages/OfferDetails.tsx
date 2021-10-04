@@ -12,6 +12,7 @@ import { formatDate, formatNumberWithCommas } from "../utils/utils";
 import { DetailsContainer } from "./OfferDetails.style";
 import { Status } from "../models/statusEnum";
 import Offer from "../components/Offer";
+import { useTranslation } from 'react-i18next';
 
 const OfferDetails = () => {
     const { id } = useParams<any>();
@@ -21,6 +22,7 @@ const OfferDetails = () => {
     const [totalPrice, setTotalPrice] = useState<number>(0);
     const [pricePerPc, setPricePerPc] = useState<number>(0);
     const [sent, setSent] = useState<boolean>(false);
+    const { t } = useTranslation();
 
     useEffect(() => {
         const getOffer = async () => {
@@ -86,15 +88,15 @@ const OfferDetails = () => {
         <>
             <Menu />
             <DetailsContainer>
-                <h1>Ajánlat részletei</h1>
+                <h1>{t('offerDetails.offerDetails')}</h1>
                 <StyledTableResponsive>
                     <thead>
                         <tr>
-                            <th>Cég</th>
-                            <th>Név</th>
-                            <th>E-mail</th>
-                            <th>Mennyiség</th>
-                            <th>Dátum</th>
+                            <th>{t('offerDetails.company')}</th>
+                            <th>{t('offerDetails.name')}</th>
+                            <th>{t('offerDetails.email')}</th>
+                            <th>{t('offerDetails.quantity')}</th>
+                            <th>{t('offerDetails.date')}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -102,7 +104,10 @@ const OfferDetails = () => {
                             <td>{offer?.company}</td>
                             <td>{offer?.name}</td>
                             <td>{offer?.email}</td>
-                            <td>{formatNumberWithCommas(offer?.amount)} db</td>
+                            <td>
+                                {formatNumberWithCommas(offer?.amount)}{' '}
+                                {t('offerDetails.pcs')}
+                            </td>
                             <td>{formatDate(offer?.date)}</td>
                         </ResponsiveOfferDetails>
                     </tbody>
@@ -110,67 +115,78 @@ const OfferDetails = () => {
             </DetailsContainer>
 
             <DetailsContainer>
-                <h2>Területek</h2>
+                <h2>{t('offerDetails.territories')}</h2>
                 <StyledTableResponsive>
                     <thead>
                         <tr>
-                            <th>Terület</th>
-                            <th colSpan={2}>Postaláda</th>
+                            <th>{t('offerDetails.territory')}</th>
+                            <th colSpan={2}>{t('offerDetails.mailbox')}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {
-                            offer?.areas?.map((area: AreaProperties) => 
-                                (
-                                    <ResponsiveAreas key={area._id}>
-                                        <td>{area.name}</td>
-                                        <td>{formatNumberWithCommas(area.mailbox)} db</td>
-                                    </ResponsiveAreas>
-                                )
-                            )
-                        }
+                        {offer?.areas?.map((area: AreaProperties) => (
+                            <ResponsiveAreas key={area._id}>
+                                <td>{area.name}</td>
+                                <td>
+                                    {formatNumberWithCommas(area.mailbox)} db
+                                </td>
+                            </ResponsiveAreas>
+                        ))}
                     </tbody>
                 </StyledTableResponsive>
             </DetailsContainer>
 
             <DetailsContainer>
-                <h2>Üzenet</h2>
+                <h2>{t('offerDetails.message')}</h2>
                 <p>{offer?.message}</p>
             </DetailsContainer>
-            
-            {
-                offer?.status !== Status.UNPROCESSED ? <Offer offer={offer} /> : null
-            }
+
+            {offer?.status !== Status.UNPROCESSED ? (
+                <Offer offer={offer} />
+            ) : null}
 
             <DetailsContainer>
-                <h2>Műveletek</h2>
-                <SubmitButton value="Ajánlat törlése" onClick={onDelete} />
+                <h2>{t('offerDetails.actions')}</h2>
+                <SubmitButton
+                    value={t('offerDetails.deleteOffer')}
+                    onClick={onDelete}
+                />
             </DetailsContainer>
 
             <FromContainerMain>
                 <StyledForm onSubmit={handleSubmit}>
-                <h2>Ajánlat adása</h2>
+                    <h2>{t('offerDetails.giveOffer')}</h2>
                     <Input
-                    required
-                    label="Ár/db*"
-                    placeholder="Ft/db"
-                    handleChange={({ target: { value } }: any) => setPricePerPc(parseFloat(value))}
-                    value={pricePerPc}
+                        required
+                        label={t('offerDetails.pricePerPiece')}
+                        placeholder={t('offerDetails.FtPerPiece')}
+                        handleChange={({ target: { value } }: any) =>
+                            setPricePerPc(parseFloat(value))
+                        }
+                        value={pricePerPc}
                     />
                     <TextArea
-                    label="Egyéb megjegyzés"
-                    handleChange={({ target: { value } }: any) => setMyMessage(value)}
-                    type="textarea"
-                    value={myMessage}
+                        label={t('offerDetails.other')}
+                        handleChange={({ target: { value } }: any) =>
+                            setMyMessage(value)
+                        }
+                        type="textarea"
+                        value={myMessage}
                     />
-                    <h2>Teljes ár: {formatNumberWithCommas(!totalPrice ? 0 : totalPrice)} Ft</h2>
-                    {
-                        offer.status === Status.PROCESSED ? <SubmitButton value="Új ajánlat küldése"/> : <SubmitButton value="Ajánlat küldése" />
-                    }
+                    <h2>
+                        {t('offerDetails.totalPrice')}:{' '}
+                        {formatNumberWithCommas(!totalPrice ? 0 : totalPrice)}{' '}
+                        Ft
+                    </h2>
+                    {offer.status === Status.PROCESSED ? (
+                        <SubmitButton value={t('offerDetails.sendNewOffer')} />
+                    ) : (
+                        <SubmitButton value={t('offerDetails.sendOffer')} />
+                    )}
                 </StyledForm>
             </FromContainerMain>
         </>
-    )
+    );
 }
 
 export default OfferDetails

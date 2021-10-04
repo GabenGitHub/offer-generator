@@ -5,6 +5,7 @@ import { FromContainer, StyledForm } from "../components/Form.style";
 import Input from "../components/Input";
 import Menu from "../components/Menu";
 import SubmitButton from "../components/SubmitButton";
+import { useTranslation } from 'react-i18next';
 
 const Registration = () => {
   const [name, setName] = useState<string>("");
@@ -12,6 +13,8 @@ const Registration = () => {
   const [password, setPassword] = useState<string>("");
   const [password2, setPassword2] = useState<string>("");
   const [isRegistered, setisRegistered] = useState(false);
+  const { t } = useTranslation();
+
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -45,45 +48,53 @@ const Registration = () => {
   }
 
   return (
-    <>
-      <Menu />
-      <FromContainer>
-        <StyledForm onSubmit={handleSubmit}>
-          <Input
-            required
-            label="Név*"
-            placeholder="Név"
-            handleChange={({ target: { value } }: any) => setName(value)}
-            value={name}
-          />
-          <Input
-            required
-            label="E-mail cím*"
-            placeholder="E-mail cím"
-            handleChange={({ target: { value } }: any) => setEmail(value)}
-            type="email"
-            value={email}
-          />
-          <Input
-            required
-            type="password"
-            label="Jelszó*"
-            placeholder="Jelszó"
-            handleChange={({ target: { value } }: any) => setPassword(value)}
-            value={password}
-          />
-          <Input
-            required
-            type="password"
-            label="Jelszó ismétlése*"
-            placeholder="Jelszó"
-            handleChange={({ target: { value } }: any) => setPassword2(value)}
-            value={password2}
-          />
-          <SubmitButton value="Regisztrálás" />
-        </StyledForm>
-      </FromContainer>
-    </>
+      <>
+          <Menu />
+          <FromContainer>
+              <StyledForm onSubmit={handleSubmit}>
+                  <Input
+                      required
+                      label={`${t('registration.name')}*`}
+                      placeholder={t('registration.name')}
+                      handleChange={({ target: { value } }: any) =>
+                          setName(value)
+                      }
+                      value={name}
+                  />
+                  <Input
+                      required
+                      label={`${t('registration.email')}*`}
+                      placeholder={t('registration.email')}
+                      handleChange={({ target: { value } }: any) =>
+                          setEmail(value)
+                      }
+                      type="email"
+                      value={email}
+                  />
+                  <Input
+                      required
+                      type="password"
+                      label={`${t('registration.password')}*`}
+                      placeholder={t('registration.password')}
+                      handleChange={({ target: { value } }: any) =>
+                          setPassword(value)
+                      }
+                      value={password}
+                  />
+                  <Input
+                      required
+                      type="password"
+                      label={`${t('registration.repeatPassword')}*`}
+                      placeholder={t('registration.repeatPassword')}
+                      handleChange={({ target: { value } }: any) =>
+                          setPassword2(value)
+                      }
+                      value={password2}
+                  />
+                  <SubmitButton value={t('registration.registration')} />
+              </StyledForm>
+          </FromContainer>
+      </>
   );
 };
 

@@ -43,7 +43,7 @@ const Menu = () => {
                     {
                         user && (
                             <>
-                                <h4 className="nav-link" >Üdv {user.name}</h4>
+                                <h4 className="nav-link" >{t("menu.welcome")} {user.name}</h4>
 
                                 <button className="nav-link" onClick={() =>
                                     fetch("/api/logout")

@@ -32,7 +32,7 @@ const Table: React.FC<any> = () => {
                         (
                             <tr key={i}>
                                 <td>{area.name}</td>
-                                <td>{formatNumberWithCommas(area.mailbox)} db</td>
+                                <td>{formatNumberWithCommas(area.mailbox)} {t('table.pcs')}</td>
                                 <td><Button onClick={() => removeArea(area)} value={t('table.delete')} /></td>
                             </tr>
                         )
