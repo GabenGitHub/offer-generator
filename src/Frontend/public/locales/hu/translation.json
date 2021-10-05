@@ -63,7 +63,7 @@
     "offerDetails": {
         "offerDetails": "Ajánlat részletei",
         "company": "Cég",
-        "name:": "Név",
+        "name": "Név",
         "email": "E-mail",
         "quantity": "Mennyiség",
         "date": "Dátum",
@@ -102,5 +102,5 @@
         "changeUser": "Felhasználó módosítása",
         "change": "Módosítás",
         "deleteUser": "Felhasználó törlése"
-    }
+    }    
 }

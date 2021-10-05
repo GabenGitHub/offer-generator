@@ -31,10 +31,10 @@
     "offer": {
         "offer": "Offer",
         "quantity": "Quantity",
-        "pricePerPiece": "Price/piece",
+        "pricePerPiece": "Price/pcs",
         "totalPrice": "Total Price",
         "pcs": "pcs",
-        "ft": "Ft",
+        "ft": "HUF",
         "response": "Response"
     },
     "admin": {
@@ -77,7 +77,7 @@
         "deleteOffer": "Delete Offer",
         "giveOffer": "Give Offer",
         "pricePerPiece": "Price/pcs",
-        "FtPerPiece": "Ft/pcs",
+        "FtPerPiece": "HUF/pcs",
         "other": "Other",
         "totalPrice": "Total price",
         "sendNewOffer": "Send new offer",
