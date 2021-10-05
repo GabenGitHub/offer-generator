@@ -1,0 +1,106 @@
+{
+    "menu": {
+        "mainPage": "Főoldal",
+        "administration": "Adminisztráció",
+        "changeLanguage": "Nyelvváltás",
+        "logOut": "Kijelentkezés",
+        "logIn": "Bejelentkezés",
+        "registration": "Regisztrálás",
+        "welcome": "Üdv"
+    },
+    "form": {
+        "name": "Név",
+        "companyName": "Cég név",
+        "email": "E-mail cím",
+        "quantity": "Mennyiség",
+        "default": "Alapértelmezett",
+        "pcs": "db",
+        "other": "Egyéb megjegyzés",
+        "submit": "Ajánlat kérése",
+        "selectTerritory": "Válassza ki a területet"
+    },
+    "header": {
+        "priceOffer": "Árajánlat"
+    },
+    "table": {
+        "territory": "Terület",
+        "mailbox": "Postaláda",
+        "delete": "Törlés",
+        "pcs": "db"
+    },
+    "offer": {
+        "offer": "Ajánlat",
+        "quantity": "Mennyiség",
+        "pricePerPiece": "Ár/db",
+        "totalPrice": "Teljes összeg",
+        "pcs": "db",
+        "ft": "Ft",
+        "response": "Válasz"
+    },
+    "admin": {
+        "offers": "Árajánlatok",
+        "users": "Felhasználók"
+    },
+    "adminOffers": {
+        "name": "Név",
+        "company": "Cég",
+        "dateOfOffer": "Árajánlat beérkezésének dátuma",
+        "date": "Dátum",
+        "status": "Státusz",
+        "offerStatus": "Ajánlat státusza"
+    },
+    "adminUsers": {
+        "handlingUsers": "Felhasználók kezelése",
+        "name:": "Név",
+        "email": "E-mail",
+        "details": "Részletek"
+    },
+    "login": {
+        "email": "E-mail cím",
+        "password": "Jelszó",
+        "login": "Bejelentkezés"
+    },
+    "offerDetails": {
+        "offerDetails": "Ajánlat részletei",
+        "company": "Cég",
+        "name": "Név",
+        "email": "E-mail",
+        "quantity": "Mennyiség",
+        "date": "Dátum",
+        "pcs": "db",
+        "territories": "Területek",
+        "territory": "Terület",
+        "mailbox": "Postaláda",
+        "message": "Üzenet",
+        "actions": "Műveletek",
+        "deleteOffer": "Ajánlat törlése",
+        "giveOffer": "Ajánlat adása",
+        "pricePerPiece": "Ár/db",
+        "FtPerPiece": "Ft/db",
+        "other": "Egyéb megjegyzés",
+        "totalPrice": "Teljes ár",
+        "sendNewOffer": "Új ajánlat küldése",
+        "sendOffer": "Ajánlat küldése"
+    },
+    "registration": {
+        "name": "Név",
+        "email": "E-mail cím",
+        "password": "Jelszó",
+        "repeatPassword": "Jelszó megismétlése",
+        "registration": "Regisztáció"
+    },
+    "thanking": {
+        "thankYou": "Köszönjük a megkeresést",
+        "received": "Ajánlat kérését megkaptuk",
+        "sending": "Hamarosan küldjük az ajánlatot."
+    },
+    "userDetails": {
+        "userDetails": ">Felhasználó részletei",
+        "name": "Név",
+        "email": "E-mail",
+        "actions": "Műveletek",
+        "changeUser": "Felhasználó módosítása",
+        "change": "Módosítás",
+        "deleteUser": "Felhasználó törlése"
+    }    
+}

@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 import { UserContext } from "../context/contexts";
 
 const Menu = () => {
+    const { t, i18n } = useTranslation();
     const history = useHistory();
     const { user, setUser } = useContext<any>(UserContext);
 
@@ -32,7 +34,7 @@ const Menu = () => {
                     >
                         <div className={`menu-btn-burger black`}></div>
                     </button>
-                    <button className="nav-main" onClick={() => history.push(`/`)}>Főoldal</button>
+                    <button className="nav-main" onClick={() => history.push(`/`)}>{t('menu.mainPage')}</button>
                 </div>
                 <div
                     className={openNavbar ? "nav-links show-links" : "nav-links"}
@@ -41,24 +43,30 @@ const Menu = () => {
                     {
                         user && (
                             <>
-                                <h4 className="nav-link" >Üdv {user.name}</h4>
+                                <h4 className="nav-link" >{t("menu.welcome")} {user.name}</h4>
 
                                 <button className="nav-link" onClick={() =>
                                     fetch("/api/logout")
                                         .then((res) => res.json())
                                         .then((data) => setUser())
-                                        .catch((err) => console.error(err))}>Kijelentkezés</button>
-                                <button className="nav-link" onClick={() => history.push(`/admin`)}>Adminisztráció</button>
+                                        .catch((err) => console.error(err))}>{t('menu.logOut')}</button>
+                                <button className="nav-link" onClick={() => history.push(`/admin`)}>{t('menu.administration')}</button>
                             </>
                         )
                     }
                     {
                         !user && (
                             <>
-                                <button className="nav-link" onClick={() => history.push(`/login`)}>Bejelentkezés</button>
-                                <button className="nav-link" onClick={() => history.push(`/registration`)}>Regisztrálás</button>
+                                <button className="nav-link" onClick={() => history.push(`/login`)}>{t('menu.logIn')}</button>
+                                <button className="nav-link" onClick={() => history.push(`/registration`)}>{t('menu.registration')}</button>
                             </>
                         )
+                    }
+                    {
+                        i18n.language === 'en'
+                        ? <button className="nav-link" onClick={() => i18n.changeLanguage('hu')}>{t('menu.changeLanguage')}</button>
+                        : <button className="nav-link" onClick={() => i18n.changeLanguage('en')}>{t('menu.changeLanguage')}</button>
+
                     }
                 </div>
             </div>

@@ -2,12 +2,14 @@ import React, { useContext } from "react";
 import { SelectedAreaContext } from "../context/contexts";
 import { AreaProperties } from "../models/area-properties"
 import { formatNumberWithCommas } from "../utils/utils";
+import { useTranslation } from 'react-i18next';
 import Button from "./Button";
 import { StyledTable } from "./Table.style";
 
 
 const Table: React.FC<any> = () => {
     const { selectedAreas, setSelectedAreas } = useContext<any>(SelectedAreaContext)
+    const { t } = useTranslation();
 
     const removeArea = (area: AreaProperties): any => {
         // @ts-ignore
@@ -20,8 +22,8 @@ const Table: React.FC<any> = () => {
             <StyledTable>
                 <thead>
                     <tr>
-                        <th>Terület</th>
-                        <th colSpan={2}>Postaláda</th>
+                        <th>{t('table.territory')}</th>
+                        <th colSpan={2}>{t('table.mailbox')}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -30,8 +32,8 @@ const Table: React.FC<any> = () => {
                         (
                             <tr key={i}>
                                 <td>{area.name}</td>
-                                <td>{formatNumberWithCommas(area.mailbox)} db</td>
-                                <td><Button onClick={() => removeArea(area)} value={"Törlés"} /></td>
+                                <td>{formatNumberWithCommas(area.mailbox)} {t('table.pcs')}</td>
+                                <td><Button onClick={() => removeArea(area)} value={t('table.delete')} /></td>
                             </tr>
                         )
                     )

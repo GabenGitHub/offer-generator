@@ -4,10 +4,12 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Status } from "../models/statusEnum";
 import EnhancedTable from "./EnhancedTable";
+import { useTranslation } from 'react-i18next';
 
 const AdminOffers = () => {
     const [ offers, setOffers ] = useState<any[]>([]);
     const history = useHistory();
+    const { t } = useTranslation();
     
     useEffect(() => {
         (async () => {
@@ -19,27 +21,27 @@ const AdminOffers = () => {
     const columns: GridColDef[] = [
         {
             field: 'name',
-            headerName: 'Név',
+            headerName: t('adminOffers.name'),
             filterable: true,
             flex: 1,
         },
         {
             field: 'company',
-            headerName: 'Cég',
-            description: 'Ajánlat beérkezésének dátuma',
+            headerName: t('adminOffers.company'),
+            description: t('adminOffers.dateOfOffer'),
             flex: 1,
         },
         {
             field: 'date',
-            headerName: 'Dátum',
-            description: 'Ajánlat beérkezésének dátuma',
+            headerName: t('adminOffers.date'),
+            description: t('adminOffers.dateOfOffer'),
             type: 'date',
             flex: 1,
         },
         {
             field: 'status',
-            headerName: 'Státusz',
-            description: 'Ajánlat státusza',
+            headerName: t('adminOffers.status'),
+            description: t('adminOffers.offerStatus'),
             type: 'singleSelect',
             valueOptions: [
                 Status.PROCESSED,

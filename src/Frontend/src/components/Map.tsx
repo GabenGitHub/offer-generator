@@ -18,6 +18,11 @@ const Map: React.FC<any> = () => {
             geoJsonRef.current.clearLayers().addData(counties);
         }
         setCounties(hungary);
+
+        // TODO: Workaround: https://stackoverflow.com/questions/36246815/data-toggle-tab-does-not-download-leaflet-map/36257493#36257493
+        setTimeout(() => {
+            window.dispatchEvent(new Event('resize'));
+        }, 500);
     }, [counties, setCounties]);
 
     const onClickArea = (event: LeafletMouseEvent): void => {
@@ -85,7 +90,7 @@ const Map: React.FC<any> = () => {
     
     return (
         <>
-            <MapContainer className="map-container" center={[47.170, 18.990]} zoom={8} scrollWheelZoom={true}>
+            <MapContainer className="map-container" center={[47.170, 18.990]} zoom={8} scrollWheelZoom={false}>
                 <TileLayer
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'

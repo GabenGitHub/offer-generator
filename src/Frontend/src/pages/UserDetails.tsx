@@ -8,10 +8,12 @@ import SubmitButton from "../components/SubmitButton";
 import { ResponsiveUser, StyledTableResponsiveUsers } from "../components/Table.style";
 import { UserContext } from "../context/contexts";
 import { DetailsContainer } from "./OfferDetails.style";
+import { useTranslation } from 'react-i18next';
 
 const UserDetails = () => {
     const { id } = useParams<any>();
     const { user, setUser } = useContext<any>(UserContext);
+    const { t } = useTranslation();
 
     const [ selectedUser, setSelectedUser ] = useState<any>();
     const [ deleted, setDeleted ] = useState<boolean>(false);
@@ -75,12 +77,12 @@ const UserDetails = () => {
         <>
             <Menu />
             <DetailsContainer>
-                <h1>Felhasználó részletei</h1>
+                <h1>{t('userDetails.userDetails')}</h1>
                 <StyledTableResponsiveUsers>
                     <thead>
                         <tr>
-                            <th>Név</th>
-                            <th>E-mail</th>
+                            <th>{t('userDetails.name')}</th>
+                            <th>{t('userDetails.email')}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -92,32 +94,33 @@ const UserDetails = () => {
                 </StyledTableResponsiveUsers>
             </DetailsContainer>
 
-            {
-                user?.email === selectedUser?.email
-                ? null
-                : (
-                    <DetailsContainer>
-                        <h2>Műveletek</h2>
-                        <SubmitButton value="Felhasználó törlése" onClick={onDelete} />
-                    </DetailsContainer>
-                )
-            }
+            {user?.email === selectedUser?.email ? null : (
+                <DetailsContainer>
+                    <h2>{t('userDetails.actions')}</h2>
+                    <SubmitButton
+                        value={t('userDetails.deletUser')}
+                        onClick={onDelete}
+                    />
+                </DetailsContainer>
+            )}
 
             <FromContainerMain>
                 <StyledForm onSubmit={handleSubmit}>
-                <h2>Felhasználó módosítása</h2>
-                <Input
-                    required
-                    label="Név*"
-                    placeholder="Név"
-                    handleChange={({ target: { value } }: any) => setName(value)}
-                    value={name}
-                />
-                <SubmitButton value="Módosítás" />
+                    <h2>{t('userDetails.changeUser')}</h2>
+                    <Input
+                        required
+                        label={`${t('userDetails.name')}*`}
+                        placeholder={t('userDetails.name')}
+                        handleChange={({ target: { value } }: any) =>
+                            setName(value)
+                        }
+                        value={name}
+                    />
+                    <SubmitButton value={t('userDetails.change')} />
                 </StyledForm>
             </FromContainerMain>
         </>
-    )
+    );
 }
 
 export default UserDetails

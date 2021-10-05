@@ -6,12 +6,14 @@ import Input from "../components/Input";
 import Menu from "../components/Menu";
 import SubmitButton from "../components/SubmitButton";
 import { UserContext } from "../context/contexts";
+import { useTranslation } from 'react-i18next';
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const { setUser } = useContext<any>(UserContext);
+  const { t } = useTranslation();
 
   const history = useHistory();
   const location = useLocation();
@@ -41,30 +43,34 @@ const Login = () => {
   };
 
   return (
-    <>
-      <Menu />
-      <FromContainer>
-        <StyledForm onSubmit={handleSubmit}>
-          <Input
-            required
-            label="E-mail cím*"
-            placeholder="E-mail cím"
-            handleChange={({ target: { value } }: any) => setEmail(value)}
-            type="email"
-            value={email}
-          />
-          <Input
-            required
-            type="password"
-            label="Jelszó*"
-            placeholder="Jelszó"
-            handleChange={({ target: { value } }: any) => setPassword(value)}
-            value={password}
-          />
-          <SubmitButton value="Bejelentkezés" />
-        </StyledForm>
-      </FromContainer>
-    </>
+      <>
+          <Menu />
+          <FromContainer>
+              <StyledForm onSubmit={handleSubmit}>
+                  <Input
+                      required
+                      label={`${t('login.email')}*`}
+                      placeholder={t('login.email')}
+                      handleChange={({ target: { value } }: any) =>
+                          setEmail(value)
+                      }
+                      type="email"
+                      value={email}
+                  />
+                  <Input
+                      required
+                      type="password"
+                      label={`${t('login.password')}*`}
+                      placeholder={t('login.password')}
+                      handleChange={({ target: { value } }: any) =>
+                          setPassword(value)
+                      }
+                      value={password}
+                  />
+                  <SubmitButton value={t('login.login')} />
+              </StyledForm>
+          </FromContainer>
+      </>
   );
 };
 
