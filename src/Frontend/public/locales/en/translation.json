@@ -41,7 +41,6 @@
         "offers": "Offers",
         "users": "Users"
     },
-
     "adminOffers": {
         "name": "Name",
         "company": "Company",
@@ -49,7 +48,6 @@
         "date": "Date",
         "status": "Status",
         "offerStatus": "Status of Offer"
-
     },
     "adminUsers": {
         "handlingUsers": "Userhandling", 
@@ -64,6 +62,7 @@
     },
     "offerDetails": {
         "offerDetails": "Details of Offer",
+        "company": "Company",
         "name": "Name",
         "email": "E-mail",
         "quantity": "Quantity",
