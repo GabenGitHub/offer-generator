@@ -2,6 +2,7 @@ import app from '../server';
 import { dbConnect, dbDisconnect, dbDelete } from './utils/dbHandler.utils';
 import mongoose from 'mongoose';
 import supertest from 'supertest';
+import IUser from '../models/IUser';
 const request = supertest(app);
 
 
@@ -17,24 +18,23 @@ describe("Smoke tests", () => {
     });
 
     it("Database works", async () => {
-        const mongoServer = await dbConnect();
+        await dbConnect();
 
         const TestModel = mongoose.model(
             "test",
-            new mongoose.Schema({
+            new mongoose.Schema<IUser>({
                 name: String,
             })
         );
 
-        const test = new TestModel({
-            name: "testName",
-        });
+        const test = new TestModel({ name: "testName" });
         await test.save();
 
         const doc = await TestModel.findOne();
+
         await dbDelete([TestModel]);
         const result = await TestModel.countDocuments();
-
+        
         // @ts-ignore
         expect(doc.name).toBe("testName");
         expect(result).toBe(0);
