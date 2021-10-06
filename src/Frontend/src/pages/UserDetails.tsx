@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useContext, useEffect, useState } from "react";
 import { Redirect, useParams } from "react-router-dom";
 import { FromContainerMain, StyledForm } from "../components/Form.style";
@@ -22,7 +22,7 @@ const UserDetails = () => {
     useEffect(() => {
         (async () => {
             try {
-                const response = await axios.get(`/api/user/${id}`);
+                const response: AxiosResponse<any> = await axios.get(`/api/user/${id}`);
                 setSelectedUser(response.data);
             } catch (error) {
                 console.log(error);
@@ -34,7 +34,7 @@ const UserDetails = () => {
     const handleSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault();
 
-        const response = await axios.put(`/api/user/${id}`, {
+        const response: AxiosResponse<any> = await axios.put(`/api/user/${id}`, {
             method: "PUT",
             data: {
                 name,
@@ -60,7 +60,7 @@ const UserDetails = () => {
             return;
         }
         try {
-            const response = await axios.delete(`/api/user/${id}`);
+            const response: AxiosResponse<any> = await axios.delete(`/api/user/${id}`);
             if (response.status === 200) {
                 setDeleted(true);
             }

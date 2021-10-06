@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useContext, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { FromContainer, StyledForm } from "../components/Form.style";
@@ -23,7 +23,7 @@ const Login = () => {
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    const response = await axios({
+    const response: AxiosResponse<any> = await axios({
       method: "POST",
       data: {
         email,

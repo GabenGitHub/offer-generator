@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { Redirect, useParams } from "react-router-dom";
 import { FromContainerMain, StyledForm } from "../components/Form.style";
@@ -27,7 +27,7 @@ const OfferDetails = () => {
     useEffect(() => {
         const getOffer = async () => {
             try {
-                const response = await axios.get(`/api/offer/${id}`);
+                const response: AxiosResponse<any> = await axios.get(`/api/offer/${id}`);
                 setOffer(response.data);
             } catch (error) {
                 console.log(error);
@@ -46,7 +46,7 @@ const OfferDetails = () => {
     const handleSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault();
 
-        const response = await axios.put(`/api/offer/${id}`, {
+        const response: AxiosResponse<any> = await axios.put(`/api/offer/${id}`, {
             method: "PUT",
             data: {
                 status: Status.PROCESSED,
@@ -71,7 +71,7 @@ const OfferDetails = () => {
 
     const onDelete = async () => {
         try {
-            const response = await axios.delete(`/api/offer/${id}`);
+            const response: AxiosResponse<any> = await axios.delete(`/api/offer/${id}`);
             if (response.status === 200) {
                 setDeleted(true);
             }

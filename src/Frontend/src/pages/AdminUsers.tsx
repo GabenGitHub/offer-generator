@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Button from "../components/Button";
@@ -13,7 +13,7 @@ const AdminUsers = () => {
 
     useEffect(() => {
         (async () => {
-            const users = await axios.get("/api/users");
+            const users: AxiosResponse<any> = await axios.get("/api/users");
             setUsers(users.data);
         })()
     }, [])
