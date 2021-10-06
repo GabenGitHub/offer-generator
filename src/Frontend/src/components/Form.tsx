@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from "react";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import Input from "./Input";
 import TextArea from "./TextArea";
 import { FormAction, FromContainerMain, Icon, StyledForm } from "./Form.style";
@@ -37,7 +37,7 @@ const Form: React.FC<any> = () => {
       return;
     }
 
-    const response = await axios({
+    const response: AxiosResponse<any> = await axios({
       method: "POST",
       data: {
         areas: selectedAreas,

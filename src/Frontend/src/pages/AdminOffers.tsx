@@ -1,5 +1,5 @@
 import { GridColDef, GridRowId } from "@mui/x-data-grid";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Status } from "../models/statusEnum";
@@ -13,7 +13,7 @@ const AdminOffers = () => {
     
     useEffect(() => {
         (async () => {
-            const offers = await axios.get("/api/offers");
+            const offers: AxiosResponse<any> = await axios.get("/api/offers");
             setOffers(offers.data);
         })()
     }, [])
