@@ -8,17 +8,25 @@ import OfferDetails from "./OfferDetails";
 import Registration from "./Registration";
 import Thanking from "./Thanking";
 import UserDetails from "./UserDetails";
+import { FormProvider, useForm } from 'react-hook-form';
 
 const Router = () => {
+
+    const methods = useForm({ mode: 'all' });
+
     return (
         <BrowserRouter>
             <Switch>
                 <UserProvider>
                     <Route exact path="/login">
-                        <Login />
+                        <FormProvider {...methods}>
+                            <Login />
+                        </FormProvider>
                     </Route>
                     <Route exact path="/registration">
-                        <Registration />
+                        <FormProvider {...methods}>
+                            <Registration />
+                        </FormProvider>
                     </Route>
                     <Route exact path="/">
                         <Home />

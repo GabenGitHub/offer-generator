@@ -17,7 +17,16 @@
         "pcs": "db",
         "other": "Egyéb megjegyzés",
         "submit": "Ajánlat kérése",
-        "selectTerritory": "Válassza ki a területet"
+        "selectTerritory": "Válassza ki a területet",
+        "errorRequired": "A mező kitöltése kötelező", 
+        "errorSpecialChar": "A mező nem tartalmazhat speciális karaktert", 
+        "errorLength": "A név túl rövid",
+        "errorEmail": "Érvénytelen email cím",
+        "errorLess": "A mennyiség nem lehet kevesebb, mint 1", 
+        "errorMore": "A mennyiség nem lehet több, mint az alapértelmezett mennyiség", 
+        "errorDigitsOnly": "A mező csak számokat tartalmazhat",
+        "errorPassword": "A jelszó legalább 6 karakter hosszúságú legyen",
+        "passwordMatch": "A jelszó nem egyezik"
     },
     "header": {
         "priceOffer": "Árajánlat"
@@ -51,7 +60,7 @@
     },
     "adminUsers": {
         "handlingUsers": "Felhasználók kezelése",
-        "name:": "Név",
+        "name": "Név",
         "email": "E-mail",
         "details": "Részletek"
     },
@@ -87,7 +96,7 @@
         "email": "E-mail cím",
         "password": "Jelszó",
         "repeatPassword": "Jelszó megismétlése",
-        "registration": "Regisztáció"
+        "registration": "Regisztráció"
     },
     "thanking": {
         "thankYou": "Köszönjük a megkeresést",

@@ -17,7 +17,16 @@
         "pcs": "pcs",
         "other": "Other",
         "submit": "Request offer",
-        "selectTerritory": "Select area"
+        "selectTerritory": "Select area",
+        "errorRequired": "This field is required",
+        "errorSpecialChar": "Field can not contain any special characters",
+        "errorLength": "Length must be 3 or more",
+        "errorEmail": "Invalid e-mail address", 
+        "errorLess": "Quantity can not be less than 1", 
+        "errorMore": "Quantity can not be higher than default value", 
+        "errorDigitsOnly": "The field can contain numbers only",
+        "errorPassword": "Password must contain at least 6 characters",
+        "passwordMatch": "Password do not match"
     },
     "header": {
         "priceOffer": "Offer"
