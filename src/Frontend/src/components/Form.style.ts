@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledForm = styled.form`
+export const StyledForm = styled.div`
     display: flex;
     flex-direction: column;
     width: 600px;
@@ -10,7 +10,53 @@ export const StyledForm = styled.form`
         text-align: center;
         margin: 1rem 0;
     }
-`
+
+    p {
+        color: red;
+        margin-left: 1rem;
+    }
+
+    input {
+        padding: 1rem;
+        margin: 0 auto 1rem;
+        max-width: 600px;
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid #e6e6e6;
+        outline: none;
+        font-family: sans-serif;
+        font-weight: 100;
+        font-size: 1rem;
+        line-height: 1.5;
+
+        &:focus {
+            border: 1px solid #6675df;
+        }
+    }
+
+    label {
+        padding: 0.5rem;
+    }
+
+    textarea {
+        padding: 1rem;
+        margin: 0 auto;
+        max-width: 600px;
+        width: 100%;
+        min-height: 200px;
+        border-radius: 10px;
+        border: 1px solid #e6e6e6;
+        outline: none;
+        resize: none;
+        &:focus {
+            border: 1px solid #6675df;
+        }
+        font-family: sans-serif;
+        font-weight: 100;
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+`;
 
 export const FromContainerMain = styled.div`
     background-color: #EEEEEE;
