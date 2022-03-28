@@ -28,8 +28,6 @@ const Login = () => {
   const { from } = location.state || { from: { pathname: "/admin" } };
 
   const handleFormSubmit = async (e: any) => {
-    e.preventDefault();
-
     const response: AxiosResponse<any> = await axios({
       method: "POST",
       data: {

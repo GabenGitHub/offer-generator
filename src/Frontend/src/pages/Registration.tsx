@@ -23,7 +23,6 @@ const Registration = () => {
   const onError = (errors: any, e: any) => console.log(errors, e);
 
   const handleFormSubmit = async (e: any) => {
-    e.preventDefault();
 
     if (password !== password2) {
       return;
